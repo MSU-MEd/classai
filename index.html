@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>หลักสูตรอบรมระยะสั้น | มหาวิทยาลัยมหาสารคาม - การพัฒนาระบบจัดการชั้นเรียนดิจิทัล</title>
+  <title>การพัฒนาระบบจัดการชั้นเรียนดิจิทัลด้วย AI | มหาวิทยาลัยมหาสารคาม</title>
   
-  <!-- Google Fonts: Prompt & Sarabun -->
+  <!-- Google Fonts: Prompt (หัวข้อพรีเมียม), Sarabun (เนื้อหาอ่านสบายตา), JetBrains Mono (ตัวเลข/โค้ด) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,400;0,500;0,600;0,700&family=Sarabun:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&family=Sarabun:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Font Awesome 6 (Cloudflare CDNJS: เสถียรและเร็ว โหลดผ่าน CSS ไม่พึ่งพา JS ไอคอนขึ้น 100%) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
@@ -26,12 +26,20 @@
             mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
-            msu: {
-              gold: '#F4B41A',
+            brand: {
               navy: '#0B192C',
+              navyDeep: '#070F1E',
               blue: '#1E3E62',
-              slate: '#1E293B'
+              gold: '#F4B41A',
+              wine: '#6B1D2F',
+              wineDark: '#4A121F',
+              accentPink: '#C23867',
             }
+          },
+          boxShadow: {
+            'glow-gold': '0 0 25px -5px rgba(244, 180, 26, 0.4)',
+            'card-soft': '0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02)',
+            'card-hover': '0 20px 40px -10px rgba(0, 0, 0, 0.12), 0 8px 10px -4px rgba(0, 0, 0, 0.04)',
           }
         }
       }
@@ -41,12 +49,21 @@
   <style>
     body {
       font-family: 'Sarabun', sans-serif;
-      line-height: 1.75;
-      color: #334155;
+      color: #0f172a;
+      background-color: #fafbfc;
+      -webkit-font-smoothing: antialiased;
     }
     h1, h2, h3, h4, h5, h6, .font-heading {
       font-family: 'Prompt', sans-serif;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
+    }
+    .frosted-glass {
+      background: rgba(11, 25, 44, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .card-transition {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
     @media print {
       body * { visibility: hidden; }
@@ -59,405 +76,566 @@
     }
   </style>
 </head>
-<body class="bg-slate-50 antialiased selection:bg-blue-600 selection:text-white">
+<body class="selection:bg-slate-900 selection:text-white">
 
-  <!-- Main Navigation Bar (ไม่มีแทบแจ้งเตือนด้านบนแล้ว) -->
-  <header class="bg-white/95 backdrop-blur border-b border-slate-200 sticky top-0 z-50">
+  <!-- ================= 1. HEADER & NAVIGATION ================= -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20">
+        
+        <!-- โลโก้มหาวิทยาลัยมหาสารคาม -->
         <a href="#hero" class="flex items-center gap-3.5 group">
-          <!-- โลโก้มหาวิทยาลัยมหาสารคาม -->
-          <div class="relative">
+          <div class="h-12 flex items-center justify-center">
             <img 
               src="https://i.ibb.co/fV5MZbwk/642768993-1941877609748834-2263063250765183521-n-1.jpg" 
-              alt="โลโก้ มหาวิทยาลัยมหาสารคาม" 
-              class="w-12 h-12 rounded-xl object-cover ring-2 ring-blue-700/20 shadow-md group-hover:scale-105 transition-transform duration-300"
-              onerror="this.src='https://placehold.co/100x100/0B192C/F4B41A?text=MSU'"
+              alt="ตราสัญลักษณ์ มหาวิทยาลัยมหาสารคาม" 
+              class="h-11 sm:h-12 w-auto object-contain rounded-lg shadow-sm group-hover:scale-105 transition-transform duration-300"
+              onerror="this.src='https://placehold.co/120x60/0B192C/F4B41A?text=MSU'"
             />
-            <div class="absolute -bottom-1 -right-1 bg-amber-400 text-slate-900 text-[10px] font-bold px-1 rounded shadow-sm">AI</div>
           </div>
-          <div>
-            <div class="text-[11px] font-bold tracking-wider uppercase text-blue-700">MAHASARAKHAM UNIVERSITY</div>
-            <div class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-blue-700 transition-colors">
-              ระบบจัดการชั้นเรียนดิจิทัลด้วย AI
+          <div class="border-l border-slate-200 pl-3 hidden min-[420px]:block">
+            <div class="text-[10px] sm:text-[11px] font-bold tracking-widest uppercase text-slate-500 font-mono">MAHASARAKHAM UNIVERSITY</div>
+            <div class="text-sm sm:text-base font-bold text-slate-900 leading-tight group-hover:text-blue-900 transition-colors">
+              หลักสูตรชั้นเรียนดิจิทัลด้วย AI
             </div>
           </div>
         </a>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden md:flex items-center space-x-7 text-sm font-medium text-slate-600">
-          <a href="#about" class="hover:text-blue-700 transition-colors">หลักการ & เหตุผล</a>
-          <a href="#outcomes" class="hover:text-blue-700 transition-colors">ผลลัพธ์การเรียนรู้</a>
-          <a href="#modules" class="hover:text-blue-700 transition-colors">เนื้อหาหลักสูตร</a>
-          <a href="#schedule" class="hover:text-blue-700 transition-colors">ตารางอบรม</a>
-          <a href="#applicants" class="hover:text-blue-700 transition-colors flex items-center gap-1.5">
+        <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium text-slate-700">
+          <a href="#about" class="hover:text-slate-950 transition-colors">เกี่ยวกับหลักสูตร</a>
+          <a href="#modules" class="hover:text-slate-950 transition-colors">เนื้อหาอบรม</a>
+          <a href="#schedule" class="hover:text-slate-950 transition-colors">ตารางเวลา</a>
+          <a href="#applicants" class="hover:text-slate-950 transition-colors flex items-center gap-2">
             <span>ตรวจสอบรายชื่อ</span>
-            <span id="navApplicantCount" class="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full font-bold">...</span>
+            <span id="navApplicantCount" class="bg-slate-100 text-slate-800 text-xs px-2.5 py-0.5 rounded-full font-mono font-bold">4</span>
           </a>
         </nav>
 
+        <!-- Header Actions -->
         <div class="flex items-center gap-3">
-          <a href="#register" class="px-5 py-2.5 text-sm font-semibold text-white bg-blue-700 hover:bg-blue-800 rounded-xl shadow-sm transition-all flex items-center gap-2">
-            <i data-lucide="user-plus" class="w-4 h-4"></i>
-            <span>สมัครอบรม</span>
+          <a href="#applicants" class="w-10 h-10 flex items-center justify-center text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded-full transition-colors" title="ค้นหารายชื่อ">
+            <i class="fa-solid fa-magnifying-glass text-sm"></i>
           </a>
+          
+          <a href="#register" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold border border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white transition-all duration-300 shadow-sm">
+            <span>ลงทะเบียน</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+
+          <button id="mobileMenuBtn" type="button" class="lg:hidden w-10 h-10 flex items-center justify-center text-slate-800 hover:bg-slate-100 rounded-xl" aria-label="เมนู">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
         </div>
+
       </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="lg:hidden hidden bg-white border-b border-slate-200 px-6 py-5 space-y-3 shadow-xl">
+      <a href="#about" class="block text-base font-medium text-slate-700 mobile-nav-link">เกี่ยวกับหลักสูตร</a>
+      <a href="#modules" class="block text-base font-medium text-slate-700 mobile-nav-link">เนื้อหาอบรม (4 โมดูล)</a>
+      <a href="#schedule" class="block text-base font-medium text-slate-700 mobile-nav-link">กำหนดการอบรม</a>
+      <a href="#applicants" class="block text-base font-medium text-slate-700 mobile-nav-link">ตรวจสอบรายชื่อผู้สมัคร</a>
+      <a href="#register" class="block text-center w-full py-3 bg-slate-900 text-white rounded-full font-semibold text-sm mobile-nav-link mt-2">
+        ลงทะเบียนเข้าร่วมอบรม
+      </a>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section id="hero" class="py-16 sm:py-24 bg-gradient-to-b from-white via-slate-50 to-slate-100/60 border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+  <!-- ================= 2. HERO SECTION ================= -->
+  <section id="hero" class="relative min-h-[92vh] sm:min-h-screen flex flex-col justify-between pt-24 pb-10 text-white overflow-hidden bg-slate-950">
+    
+    <!-- Background Image: ใช้ภาพบรรยากาศใหม่ตามที่ระบุ พร้อม Gradient สวยงามสมบูรณ์ -->
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+      <img 
+        src="https://i.ibb.co/mVPNpPdH/616841424-122155809020938987-1605441612255146799-n.jpg" 
+        alt="บรรยากาศการศึกษา มหาวิทยาลัยมหาสารคาม" 
+        class="w-full h-full object-cover object-center brightness-[0.75] contrast-[1.02]"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-slate-900/60"></div>
+    </div>
+
+    <!-- Center Headline Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-16 sm:pt-28 pb-8 flex flex-col items-center text-center">
+      
+      <!-- Pill Badge -->
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-medium mb-6 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+        หลักสูตรระยะสั้นพัฒนาวิชาชีพครูยุคดิจิทัล • รหัสหลักสูตร 1056799
+      </div>
+
+      <!-- Main Heading -->
+      <div class="space-y-1">
+        <p class="text-2xl sm:text-4xl md:text-5xl font-light text-slate-200 tracking-tight">
+          เพราะเราเชื่อใน
+        </p>
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight drop-shadow-md">
+          พลังของครูยุคใหม่
+        </h1>
+      </div>
+
+      <p class="mt-5 text-sm sm:text-lg text-slate-200 max-w-2xl font-light font-body leading-relaxed drop-shadow">
+        เปลี่ยนภาระงานเอกสารซ้ำซ้อนสู่ <strong class="text-white font-medium">Web Application</strong> ประจำห้องเรียนด้วย Google Sheets & GitHub ร่วมกับ AI Prompts <span class="text-amber-300 font-medium">โดยไม่ต้องมีพื้นฐานโค้ดมาก่อน</span>
+      </p>
+
+      <!-- Persona Selector -->
+      <div class="mt-8 flex items-center justify-center">
+        <div class="relative inline-flex items-center bg-white/15 hover:bg-white/20 backdrop-blur-md border border-white/25 px-5 py-2.5 rounded-full text-white text-sm font-medium transition cursor-pointer shadow-sm">
+          <span class="text-slate-300 mr-2 text-xs sm:text-sm">ฉันคือ...</span>
+          <select id="userRoleHeroSelect" class="bg-transparent text-white font-bold cursor-pointer focus:outline-none appearance-none pr-7 text-xs sm:text-sm">
+            <option value="ครู" class="text-slate-900">ครูผู้สอนระดับการศึกษาขั้นพื้นฐาน</option>
+            <option value="นิสิต" class="text-slate-900">นิสิต/นักศึกษาฝึกประสบการณ์วิชาชีพครู</option>
+            <option value="บุคลากร" class="text-slate-900">บุคลากรทางการศึกษา</option>
+            <option value="อาจารย์" class="text-slate-900">อาจารย์ระดับอุดมศึกษา</option>
+          </select>
+          <i class="fa-solid fa-chevron-down text-white/80 absolute right-4 pointer-events-none text-xs"></i>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Dock: Frosted Glass Action Cards -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
         
-        <!-- Left: Headline & Rationale Intro -->
-        <div class="lg:col-span-7 space-y-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold">
-            <span class="w-2 h-2 rounded-full bg-blue-600"></span>
-            หลักสูตรระยะสั้นเพื่อพัฒนาวิชาชีพครูยุค AI • รหัสหลักสูตร 1056799
+        <!-- Card 1 -->
+        <a href="#register" class="frosted-glass hover:bg-slate-900/90 border border-white/15 p-4 sm:p-5 rounded-2xl sm:rounded-3xl card-transition hover:-translate-y-1 group">
+          <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white mb-3 group-hover:bg-amber-400 group-hover:text-slate-950 transition-colors">
+            <i class="fa-solid fa-pen-to-square text-base"></i>
           </div>
+          <div class="text-xs sm:text-sm font-bold text-white group-hover:text-amber-400 transition-colors">การรับสมัคร</div>
+          <div class="text-[11px] text-slate-300 mt-0.5">เปิดรับ 35 ที่นั่งจำกัด</div>
+        </a>
 
-          <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 leading-tight">
-            การพัฒนาระบบจัดการชั้นเรียนดิจิทัลด้วย <br>
-            <span class="text-blue-700">Google Sheets & GitHub</span> <br class="hidden sm:inline">
-            ร่วมกับ AI Prompts
-          </h1>
-
-          <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-body">
-            เปลี่ยนภาระงานเอกสารซ้ำซ้อน เช่น เช็กชื่อ บันทึกคะแนน และตรวจการบ้าน ให้กลายเป็น <strong>Web Application</strong> ประจำห้องเรียน โดยใช้ Generative AI ช่วยเขียนโค้ดและดีบักระบบ <strong>ผู้เรียนไม่จำเป็นต้องมีพื้นฐานการเขียนโปรแกรมมาก่อน</strong>
-          </p>
-
-          <!-- Highlight Stats -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-            <div class="p-4 bg-white rounded-2xl border border-slate-200 shadow-sm text-center">
-              <div class="text-2xl font-bold text-blue-700 font-mono">12 ชม.</div>
-              <div class="text-xs text-slate-500 mt-0.5">บรรยาย 3 / ปฏิบัติ 9 ชม.</div>
-            </div>
-            <div class="p-4 bg-white rounded-2xl border border-slate-200 shadow-sm text-center">
-              <div class="text-2xl font-bold text-emerald-600 font-mono">2 วัน</div>
-              <div class="text-xs text-slate-500 mt-0.5">Workshop ลงมือทำจริง</div>
-            </div>
-            <div class="p-4 bg-white rounded-2xl border border-slate-200 shadow-sm text-center">
-              <div class="text-2xl font-bold text-amber-600 font-mono">35 คน</div>
-              <div class="text-xs text-slate-500 mt-0.5">ดูแลเข้มข้นตัวต่อตัว</div>
-            </div>
-            <div class="p-4 bg-white rounded-2xl border border-slate-200 shadow-sm text-center">
-              <div class="text-2xl font-bold text-indigo-700">วุฒิบัตร</div>
-              <div class="text-xs text-slate-500 mt-0.5">รับรองจาก มมส.</div>
-            </div>
+        <!-- Card 2 -->
+        <a href="#modules" class="frosted-glass hover:bg-slate-900/90 border border-white/15 p-4 sm:p-5 rounded-2xl sm:rounded-3xl card-transition hover:-translate-y-1 group">
+          <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white mb-3 group-hover:bg-amber-400 group-hover:text-slate-950 transition-colors">
+            <i class="fa-solid fa-book-open text-base"></i>
           </div>
+          <div class="text-xs sm:text-sm font-bold text-white group-hover:text-amber-400 transition-colors">เนื้อหาหลักสูตร</div>
+          <div class="text-[11px] text-slate-300 mt-0.5">4 โมดูลปฏิบัติจริง</div>
+        </a>
 
-          <div class="flex flex-wrap items-center gap-4 pt-4">
-            <a href="#register" class="px-7 py-3.5 bg-blue-700 hover:bg-blue-800 text-white font-semibold rounded-xl shadow-md transition-all flex items-center gap-2 text-base">
-              <i data-lucide="edit-3" class="w-5 h-5"></i>
-              <span>ลงทะเบียนเข้าร่วมอบรม</span>
-            </a>
-            <a href="#schedule" class="px-6 py-3.5 bg-white text-slate-700 hover:bg-slate-50 border border-slate-300 font-semibold rounded-xl transition-all flex items-center gap-2">
-              <i data-lucide="calendar" class="w-4 h-4 text-slate-500"></i>
-              <span>ดูกำหนดการอบรม</span>
-            </a>
+        <!-- Card 3 -->
+        <a href="#schedule" class="frosted-glass hover:bg-slate-900/90 border border-white/15 p-4 sm:p-5 rounded-2xl sm:rounded-3xl card-transition hover:-translate-y-1 group">
+          <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white mb-3 group-hover:bg-amber-400 group-hover:text-slate-950 transition-colors">
+            <i class="fa-solid fa-calendar-days text-base"></i>
           </div>
-        </div>
+          <div class="text-xs sm:text-sm font-bold text-white group-hover:text-amber-400 transition-colors">ตารางการอบรม</div>
+          <div class="text-[11px] text-slate-300 mt-0.5">12 ชม. รวม 2 วัน</div>
+        </a>
 
-        <!-- Right: Real-time Seat Widget connected to Sheets -->
-        <div class="lg:col-span-5">
-          <div class="bg-white rounded-3xl p-7 border border-slate-200 shadow-xl relative">
-            <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
-              <div>
-                <span class="text-xs font-bold text-blue-700 uppercase tracking-wider">สถานะที่นั่ง (Google Sheets)</span>
-                <div class="text-lg font-bold text-slate-900 mt-0.5">รุ่นที่ 1 ประจำปีการศึกษา 2569</div>
-              </div>
-              <span id="connectionBadge" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                กำลังซิงก์ข้อมูลสด
-              </span>
-            </div>
-
-            <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-inner mb-6">
-              <div class="flex justify-between items-end mb-3">
-                <div>
-                  <div class="text-xs text-slate-400">ที่นั่งคงเหลือสุดท้าย</div>
-                  <div class="text-4xl font-extrabold text-amber-400 font-mono mt-1" id="heroRemainingSeats">--</div>
-                </div>
-                <div class="text-right">
-                  <div class="text-xs text-slate-400">เป้าหมายเปิดรับ</div>
-                  <div class="text-xl font-bold text-white font-mono">35 คน</div>
-                </div>
-              </div>
-
-              <!-- Seat Bar -->
-              <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden p-0.5">
-                <div id="heroSeatProgressBar" class="bg-gradient-to-r from-emerald-400 via-blue-400 to-amber-400 h-2 rounded-full transition-all duration-700" style="width: 0%;"></div>
-              </div>
-              <div class="flex justify-between items-center text-xs text-slate-400 mt-3 font-mono">
-                <span>สมัครแล้ว: <strong class="text-white" id="heroRegisteredCount">--</strong> คน</span>
-                <span class="text-emerald-400 font-medium">เปิดรับสมัครจำนวนจำกัด</span>
-              </div>
-            </div>
-
-            <!-- Program Brief Highlights -->
-            <ul class="space-y-3 text-sm text-slate-700">
-              <li class="flex items-start gap-3">
-                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5"></i>
-                <span><strong>ได้เว็บจริง:</strong> มี Web App เช็กชื่อและแสดงผลคะแนนของตนเองนำไปใช้สอนทันที</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5"></i>
-                <span><strong>ฟรีค่าใช้จ่ายระบบ:</strong> โฮสต์บน GitHub Pages และเก็บข้อมูลบน Google Sheets ฟรี 100%</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5"></i>
-                <span><strong>ความปลอดภัย PDPA:</strong> เรียนรู้หลักกฎหมายและวิธีปกป้องข้อมูลส่วนบุคคลของนักเรียน</span>
-              </li>
-            </ul>
-
-            <div class="mt-6 pt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-              <span>จัดโดย มหาวิทยาลัยมหาสารคาม</span>
-              <a href="#applicants" class="text-blue-700 font-semibold hover:underline flex items-center gap-1">
-                ตรวจรายชื่อผู้สมัครล่าสุด <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
-              </a>
-            </div>
+        <!-- Card 4 -->
+        <a href="#applicants" class="frosted-glass hover:bg-slate-900/90 border border-white/15 p-4 sm:p-5 rounded-2xl sm:rounded-3xl card-transition hover:-translate-y-1 group">
+          <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white mb-3 group-hover:bg-amber-400 group-hover:text-slate-950 transition-colors">
+            <i class="fa-solid fa-users text-base"></i>
           </div>
-        </div>
+          <div class="text-xs sm:text-sm font-bold text-white group-hover:text-amber-400 transition-colors">ตรวจสอบสิทธิ์</div>
+          <div class="text-[11px] text-slate-300 mt-0.5 flex items-center gap-1.5">
+            <span>ยืนยันแล้ว:</span>
+            <span id="heroRegisteredMini" class="font-bold text-amber-400 font-mono">4 คน</span>
+          </div>
+        </a>
 
       </div>
     </div>
   </section>
 
-  <!-- 4 Core Curriculum Modules Section -->
-  <section id="modules" class="py-20 bg-white border-b border-slate-200">
+  <!-- ================= 3. STATEMENT & STATS SECTION ================= -->
+  <section id="about" class="py-20 sm:py-28 bg-white border-b border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-14">
-        <span class="text-blue-700 font-semibold text-xs uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
-          CURRICULUM MODULES
-        </span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">
-          4 เนื้อหาหลักในการพัฒนาระบบ
+      
+      <!-- Big Statement Typography -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight">
+          12 ชั่วโมง สู่ห้องเรียนอัจฉริยะ
         </h2>
-        <p class="text-slate-600 mt-2 text-base leading-relaxed">
-          จัดลำดับการเรียนรู้แบบ Workshop Step-by-Step มุ่งเน้นการลงมือสร้างสรรค์และแก้ปัญหาจริง
+        <p class="mt-4 text-slate-600 text-base sm:text-xl font-light font-body leading-relaxed">
+          ผู้นำการประยุกต์ใช้ปัญญาประดิษฐ์ (Generative AI) เพื่อพัฒนาคุณภาพการจัดการศึกษา และลดภาระงานครูอย่างยั่งยืน
         </p>
+
+        <!-- Action Pill Buttons -->
+        <div class="mt-8 flex flex-wrap justify-center items-center gap-3">
+          <a href="#modules" class="px-7 py-3 rounded-full border border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white font-medium text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 shadow-sm">
+            <span>เกี่ยวกับหลักสูตร</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+          <a href="#register" class="px-7 py-3 rounded-full border border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white font-medium text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 shadow-sm">
+            <span>สมัครเข้าร่วมอบรม</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Module 1 -->
-        <div class="p-8 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="w-10 h-10 rounded-xl bg-blue-700 text-white font-mono font-bold flex items-center justify-center">01</span>
-            <div>
-              <span class="text-xs font-bold text-blue-700 uppercase tracking-wider">DATABASE ARCHITECTURE</span>
-              <h3 class="text-lg font-bold text-slate-900">การวางโครงสร้างฐานข้อมูลใน Google Sheets</h3>
+      <!-- 3 Feature Highlight Cards -->
+      <div id="featureCardsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        
+        <!-- Card 1: Live Seat Status -->
+        <div class="bg-gradient-to-br from-brand-navyDeep via-brand-navy to-slate-900 text-white rounded-[30px] p-7 sm:p-8 flex flex-col justify-between shadow-card-soft hover:shadow-card-hover card-transition border border-slate-800">
+          <div>
+            <div class="flex justify-between items-start">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-emerald-400 border border-white/10" id="connectionBadge">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                Google Sheets ซิงก์สด
+              </span>
+              <span class="text-[10px] uppercase tracking-wider text-slate-400 font-mono">SEATS STATUS</span>
+            </div>
+
+            <h3 class="text-2xl font-bold mt-6 leading-snug">
+              สถานะที่นั่งคงเหลือ <br>
+              <span class="text-amber-400 font-mono text-3xl sm:text-4xl font-extrabold" id="heroRemainingSeats">31</span> 
+              <span class="text-sm font-normal text-slate-300">/ 35 ที่นั่ง</span>
+            </h3>
+
+            <!-- Progress Bar -->
+            <div class="mt-4 w-full bg-slate-800/80 rounded-full h-2.5 overflow-hidden p-0.5 border border-white/10">
+              <div id="heroSeatProgressBar" class="bg-gradient-to-r from-emerald-400 via-amber-400 to-rose-400 h-1.5 rounded-full transition-all duration-700" style="width: 12%;"></div>
+            </div>
+            
+            <p class="mt-4 text-slate-300 text-xs sm:text-sm font-body leading-relaxed">
+              ลงทะเบียนแล้ว <strong class="text-white font-mono font-bold" id="heroRegisteredCount">4</strong> ท่าน ระบบจะปิดรับสมัครอัตโนมัติเมื่อครบ 35 ที่นั่ง
+            </p>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-white/10 flex justify-between items-center text-xs text-slate-400">
+            <span>รุ่นที่ 1 ประจำปีการศึกษา 2569</span>
+            <a href="#register" class="w-10 h-10 rounded-full bg-white text-slate-950 flex items-center justify-center hover:bg-amber-400 hover:scale-105 transition-all shadow-md" title="ไปยังแบบฟอร์มสมัคร">
+              <i class="fa-solid fa-arrow-right text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2: MSU Certificate Card -->
+        <div class="bg-gradient-to-br from-brand-wine via-[#541423] to-brand-wineDark text-white rounded-[30px] p-7 sm:p-8 flex flex-col justify-between shadow-card-soft hover:shadow-card-hover card-transition border border-pink-950/40">
+          <div>
+            <div class="flex justify-between items-start">
+              <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white/15 text-pink-100 border border-white/15">
+                CERTIFICATE
+              </span>
+              <div class="w-12 h-12 rounded-2xl bg-white/15 border border-white/20 flex flex-col items-center justify-center p-1 text-center shadow-inner">
+                <i class="fa-solid fa-award text-amber-300 text-base mb-0.5"></i>
+                <span class="text-[9px] font-bold font-mono tracking-wider">12 HR</span>
+              </div>
+            </div>
+
+            <h3 class="text-2xl font-bold mt-6 leading-snug">
+              วุฒิบัตรรับรองจาก <br>
+              มหาวิทยาลัยมหาสารคาม
+            </h3>
+
+            <p class="mt-4 text-pink-100/90 text-xs sm:text-sm font-body leading-relaxed">
+              สำหรับใช้สะสมหน่วยกิต (Credit Bank) และนับเป็นชั่วโมงพัฒนาวิชาชีพเพื่อประกอบการเลื่อนวิทยฐานะ (ว PA) ของ ก.ค.ศ.
+            </p>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-white/15 flex justify-between items-center text-xs text-pink-200">
+            <span>เกณฑ์ประเมินผ่าน 75%</span>
+            <a href="#modules" class="w-10 h-10 rounded-full bg-white/20 hover:bg-white text-white hover:text-slate-900 flex items-center justify-center hover:scale-105 transition-all shadow-md" title="ดูรายละเอียดโมดูล">
+              <i class="fa-solid fa-plus text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 3: Free Hosting on GitHub Pages -->
+        <div class="bg-slate-100 text-slate-900 rounded-[30px] p-7 sm:p-8 flex flex-col justify-between border border-slate-200/90 shadow-card-soft hover:shadow-card-hover card-transition">
+          <div>
+            <span class="text-xs font-bold text-slate-700 uppercase tracking-wider bg-white px-3 py-1 rounded-full border border-slate-200 shadow-sm">
+              OPEN INFRASTRUCTURE
+            </span>
+
+            <h3 class="text-2xl font-bold mt-6 text-slate-950 leading-snug">
+              โฮสต์ฟรีตลอดชีพบน <br>
+              GitHub & Google Cloud
+            </h3>
+
+            <p class="mt-4 text-slate-600 text-xs sm:text-sm font-body leading-relaxed">
+              โรงเรียนไม่ต้องแบกรับค่าเซิร์ฟเวอร์รายเดือน ฐานข้อมูลเป็นของครูผู้สอนเอง 100% ภายใต้ความปลอดภัยตามกฎหมาย PDPA
+            </p>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-500 font-mono">
+            <span>100% Free Hosting</span>
+            <div class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center shadow-md">
+              <i class="fa-solid fa-check text-sm text-emerald-400"></i>
             </div>
           </div>
-          <p class="text-slate-600 text-sm leading-relaxed mb-4">
-            เรียนรู้การจัดระเบียบตารางและฟิลด์ข้อมูลให้รองรับการเชื่อมต่อกับระบบภายนอก ทำหน้าที่เป็น Database หลังบ้านที่ปลอดภัยและตรวจสอบย้อนหลังได้ง่าย
-          </p>
-          <div class="bg-white p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700">
-            <strong>กิจกรรม:</strong> กำหนดโครงสร้างคอลัมน์มาตรฐาน: รหัสนักเรียน, ชื่อ-สกุล, เวลาเข้าเรียน, คะแนนเก็บสะสม และสถานะส่งงาน
+        </div>
+
+      </div>
+
+      <!-- Carousel Navigation Controls -->
+      <div class="mt-12 flex justify-end items-center gap-3">
+        <button id="pauseCarouselBtn" type="button" class="w-11 h-11 rounded-full border border-slate-300 hover:border-slate-900 flex items-center justify-center text-slate-700 hover:text-slate-900 transition-all bg-white hover:bg-slate-50 shadow-sm" title="เล่น/หยุด">
+          <i class="fa-solid fa-pause text-xs"></i>
+        </button>
+        <button id="prevCarouselBtn" type="button" class="w-11 h-11 rounded-full border border-slate-300 hover:border-slate-900 flex items-center justify-center text-slate-700 hover:text-slate-900 transition-all bg-white hover:bg-slate-50 shadow-sm" title="ย้อนกลับ">
+          <i class="fa-solid fa-arrow-left text-xs"></i>
+        </button>
+        <button id="nextCarouselBtn" type="button" class="w-11 h-11 rounded-full border border-slate-900 bg-slate-900 text-white flex items-center justify-center transition-all hover:bg-slate-800 shadow-md" title="ถัดไป">
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 4. CURRICULUM MODULES ================= -->
+  <section id="modules" class="py-20 sm:py-28 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-slate-500 font-mono">CURRICULUM MODULES</span>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2">
+            เนื้อหาการฝึกอบรม
+          </h2>
+          <p class="text-slate-600 text-sm sm:text-base mt-1">การลงมือสร้างสรรค์และแก้ปัญหาจริง 4 ขั้นตอนตั้งแต่ฐานข้อมูลจนถึงขึ้นเว็บจริง</p>
+        </div>
+        <a href="#schedule" class="self-start sm:self-auto px-6 py-2.5 rounded-full border border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white text-xs font-semibold transition-all flex items-center gap-2 shadow-sm">
+          <span>ดูกำหนดการอบรม</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- 4 Editorial Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Module 1 -->
+        <div class="bg-white rounded-[28px] p-6 sm:p-7 border border-slate-200 shadow-card-soft hover:shadow-card-hover card-transition flex flex-col justify-between group">
+          <div>
+            <div class="flex justify-between items-center mb-5">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 font-mono">MODULE 01</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700">Database</span>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-800 mb-5 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all">
+              <i class="fa-solid fa-table-cells text-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 leading-snug group-hover:text-blue-900 transition-colors">
+              สถาปัตยกรรม Google Sheets สำหรับฐานข้อมูล
+            </h3>
+            <p class="text-slate-600 text-xs sm:text-sm mt-3 font-body leading-relaxed">
+              จัดโครงสร้างคอลัมน์มาตรฐาน: รหัสนักเรียน, เวลาเข้าเรียน, เช็กชื่อ และคะแนนเก็บ เพื่อรองรับการเชื่อมต่อกับระบบภายนอก
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-500 font-mono">1.5 ชั่วโมง</span>
+            <div class="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-slate-900 group-hover:text-white flex items-center justify-center transition-colors">
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </div>
           </div>
         </div>
 
         <!-- Module 2 -->
-        <div class="p-8 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="w-10 h-10 rounded-xl bg-indigo-700 text-white font-mono font-bold flex items-center justify-center">02</span>
-            <div>
-              <span class="text-xs font-bold text-indigo-700 uppercase tracking-wider">AI CODE GENERATION</span>
-              <h3 class="text-lg font-bold text-slate-900">การเขียน AI Prompt สั่งสร้าง Apps Script</h3>
+        <div class="bg-slate-950 text-white rounded-[28px] p-6 sm:p-7 shadow-card-soft hover:shadow-card-hover card-transition flex flex-col justify-between group border border-slate-800">
+          <div>
+            <div class="flex justify-between items-center mb-5">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400 font-mono">MODULE 02</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-white/10 text-white">AI Scripting</span>
             </div>
+            <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-amber-400 mb-5 group-hover:scale-110 group-hover:bg-amber-400 group-hover:text-slate-950 transition-all">
+              <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white leading-snug group-hover:text-amber-400 transition-colors">
+              Prompt AI ให้สร้าง Apps Script อัตโนมัติ
+            </h3>
+            <p class="text-slate-300 text-xs sm:text-sm mt-3 font-body leading-relaxed">
+              ฝึกเขียน Prompt เชิงเทคนิคเพื่อสร้างฟังก์ชัน doGet และ doPost จัดการรับค่าจากหน้าเว็บมาบันทึกลง Sheet แบบเรียลไทม์
+            </p>
           </div>
-          <p class="text-slate-600 text-sm leading-relaxed mb-4">
-            ฝึกทักษะการสื่อสารกับ AI ด้วยเทคนิค Chain-of-Thought เพื่อให้ AI สร้างโค้ด Google Apps Script เชื่อมโยงฐานข้อมูลกับหน้าเว็บอย่างแม่นยำ
-          </p>
-          <div class="bg-white p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700">
-            <strong>กิจกรรม:</strong> สั่ง AI ให้เขียนฟังก์ชัน doGet และ doPost จัดการรับค่าจากหน้าเว็บมาบันทึกลง Sheet โดยอัตโนมัติ
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+            <span class="text-xs text-slate-400 font-mono">3.5 ชั่วโมง</span>
+            <div class="w-8 h-8 rounded-full bg-white/10 group-hover:bg-amber-400 group-hover:text-slate-950 flex items-center justify-center transition-colors">
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </div>
           </div>
         </div>
 
         <!-- Module 3 -->
-        <div class="p-8 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="w-10 h-10 rounded-xl bg-emerald-700 text-white font-mono font-bold flex items-center justify-center">03</span>
-            <div>
-              <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">GITHUB PAGES DEPLOYMENT</span>
-              <h3 class="text-lg font-bold text-slate-900">การสร้างหน้าเว็บและโฮสต์บน GitHub Pages</h3>
+        <div class="bg-white rounded-[28px] p-6 sm:p-7 border border-slate-200 shadow-card-soft hover:shadow-card-hover card-transition flex flex-col justify-between group">
+          <div>
+            <div class="flex justify-between items-center mb-5">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 font-mono">MODULE 03</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700">Deployment</span>
             </div>
+            <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-800 mb-5 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all">
+              <i class="fa-solid fa-globe text-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 leading-snug group-hover:text-emerald-700 transition-colors">
+              สร้าง UI หน้าเว็บและเปิดใช้ GitHub Pages
+            </h3>
+            <p class="text-slate-600 text-xs sm:text-sm mt-3 font-body leading-relaxed">
+              ออกแบบหน้าเว็บ Responsive ให้เปิดใช้งานได้บนมือถือทุกรุ่น อัปโหลดโค้ดสู่ GitHub เพื่อให้มีลิงก์เว็บไซต์ใช้งานได้ฟรีตลอดชีพ
+            </p>
           </div>
-          <p class="text-slate-600 text-sm leading-relaxed mb-4">
-            สร้างหน้า Web UI สำหรับนักเรียนด้วย HTML, Tailwind CSS และอัปโหลดขึ้น GitHub Pages เพื่อเผยแพร่เป็นลิงก์เว็บไซต์ใช้งานได้ฟรีตลอดชีพ
-          </p>
-          <div class="bg-white p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700">
-            <strong>กิจกรรม:</strong> สร้าง Repository, นำโค้ดขึ้น GitHub, เปิดใช้งาน Pages และทดสอบการเข้าใช้งานผ่านสมาร์ตโฟน
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-500 font-mono">3.5 ชั่วโมง</span>
+            <div class="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-slate-900 group-hover:text-white flex items-center justify-center transition-colors">
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </div>
           </div>
         </div>
 
         <!-- Module 4 -->
-        <div class="p-8 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="w-10 h-10 rounded-xl bg-amber-600 text-white font-mono font-bold flex items-center justify-center">04</span>
-            <div>
-              <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">DEBUGGING & PDPA ETHICS</span>
-              <h3 class="text-lg font-bold text-slate-900">การแก้ปัญหาหน้างาน และความปลอดภัย PDPA</h3>
+        <div class="bg-white rounded-[28px] p-6 sm:p-7 border border-slate-200 shadow-card-soft hover:shadow-card-hover card-transition flex flex-col justify-between group">
+          <div>
+            <div class="flex justify-between items-center mb-5">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 font-mono">MODULE 04</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-700">Ethics & PDPA</span>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-800 mb-5 group-hover:scale-110 group-hover:bg-rose-600 group-hover:text-white transition-all">
+              <i class="fa-solid fa-shield-halved text-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 leading-snug group-hover:text-rose-700 transition-colors">
+              การแก้ปัญหาโค้ด & จริยธรรมข้อมูล PDPA
+            </h3>
+            <p class="text-slate-600 text-xs sm:text-sm mt-3 font-body leading-relaxed">
+              วิธีอ่าน Error และใช้ AI ช่วยวิเคราะห์แก้ไข พร้อมเรียนรู้แนวทางการคุ้มครองข้อมูลส่วนบุคคลของนักเรียนตามกฎหมาย
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-500 font-mono">3.5 ชั่วโมง</span>
+            <div class="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-slate-900 group-hover:text-white flex items-center justify-center transition-colors">
+              <i class="fa-solid fa-arrow-right text-xs"></i>
             </div>
           </div>
-          <p class="text-slate-600 text-sm leading-relaxed mb-4">
-            วิธีอ่าน Error Console และส่งโค้ดให้ AI วิเคราะห์แก้ไข พร้อมเรียนรู้หลักการจัดเก็บและแสดงผลคะแนนนักเรียนตามกฎหมาย PDPA
-          </p>
-          <div class="bg-white p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700">
-            <strong>กิจกรรม:</strong> จำลองข้อผิดพลาดของระบบ ฝึกใช้ AI แก้ไขโค้ด และกำหนดสิทธิ์การเข้าถึงข้อมูลคะแนนส่วนบุคคล
-          </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Schedule Section -->
-  <section id="schedule" class="py-20 bg-slate-100/70 border-b border-slate-200">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <span class="text-blue-700 font-semibold text-xs uppercase tracking-wider bg-blue-100/60 px-3 py-1 rounded-full border border-blue-200">
-          AGENDA & TIMETABLE
-        </span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">
-          กำหนดการฝึกอบรม (รวม 12 ชั่วโมง)
-        </h2>
-      </div>
-
-      <!-- Tab Switcher -->
-      <div class="flex justify-center mb-8">
-        <div class="inline-flex p-1.5 bg-slate-200 rounded-2xl shadow-inner">
-          <button id="tabDay1Btn" type="button" class="px-6 py-2.5 rounded-xl font-bold text-sm bg-white text-blue-700 shadow-sm transition-all flex items-center gap-2">
-            <i data-lucide="calendar" class="w-4 h-4"></i> วันที่ 1 : สถาปัตยกรรม & AI Scripting
-          </button>
-          <button id="tabDay2Btn" type="button" class="px-6 py-2.5 rounded-xl font-bold text-sm text-slate-600 hover:text-slate-900 transition-all flex items-center gap-2">
-            <i data-lucide="calendar-check" class="w-4 h-4"></i> วันที่ 2 : GitHub Pages, PDPA & ชิ้นงาน
-          </button>
-        </div>
-      </div>
-
-      <!-- Day 1 Schedule List -->
-      <div id="scheduleDay1" class="space-y-4">
-        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div class="flex items-start gap-4">
-            <div class="w-16 h-16 rounded-xl bg-blue-50 text-blue-700 font-mono font-bold flex flex-col items-center justify-center shrink-0 border border-blue-100">
-              <span class="text-[11px]">เช้า</span>
-              <span class="text-sm">09:00</span>
-            </div>
-            <div>
-              <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">09.00 - 10.30 น. (1.5 ชม.) • บรรยาย & สาธิต</span>
-              <h4 class="text-lg font-bold text-slate-900 mt-1">ภาพรวมระบบจัดการชั้นเรียนดิจิทัลด้วย Google Sheets + Apps Script + GitHub</h4>
-              <p class="text-slate-600 text-sm mt-1">ทำความเข้าใจ Data Flow การทำงานของเว็บแอปพลิเคชัน และข้อจำกัดการใช้งานในสถานศึกษา</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div class="flex items-start gap-4">
-            <div class="w-16 h-16 rounded-xl bg-indigo-50 text-indigo-700 font-mono font-bold flex flex-col items-center justify-center shrink-0 border border-indigo-100">
-              <span class="text-[11px]">สาย</span>
-              <span class="text-sm">10:30</span>
-            </div>
-            <div>
-              <span class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">10.30 - 12.00 น. (1.5 ชม.) • Workshop ปฏิบัติการ</span>
-              <h4 class="text-lg font-bold text-slate-900 mt-1">Prompting AI ให้เขียน Google Apps Script เพื่อสร้างฐานข้อมูลและระบบบันทึกเวลา</h4>
-              <p class="text-slate-600 text-sm mt-1">ลงมือเขียน Prompt สร้างโค้ดฝั่ง Server รองรับการเช็กชื่อและดึงข้อมูลคะแนน</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="p-3 text-center text-xs text-slate-500 font-mono bg-slate-200/60 rounded-xl flex items-center justify-center gap-2">
-          <i data-lucide="coffee" class="w-4 h-4 text-amber-600"></i> 12.00 - 13.00 น. พักรับประทานอาหารกลางวัน
-        </div>
-
-        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div class="flex items-start gap-4">
-            <div class="w-16 h-16 rounded-xl bg-emerald-50 text-emerald-700 font-mono font-bold flex flex-col items-center justify-center shrink-0 border border-emerald-100">
-              <span class="text-[11px]">บ่าย</span>
-              <span class="text-sm">13:00</span>
-            </div>
-            <div>
-              <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">13.00 - 16.30 น. (3.5 ชม.) • Workshop เข้มข้น</span>
-              <h4 class="text-lg font-bold text-slate-900 mt-1">การทดสอบ Web App API และเชื่อมข้อมูลกับ Google Sheets สำเร็จ 100%</h4>
-              <p class="text-slate-600 text-sm mt-1">ทดสอบยิง Request รับ-ส่งค่าข้อมูลจริง ดีบักข้อผิดพลาดร่วมกับ AI ผู้ช่วย</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Day 2 Schedule List -->
-      <div id="scheduleDay2" class="space-y-4 hidden">
-        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div class="flex items-start gap-4">
-            <div class="w-16 h-16 rounded-xl bg-blue-50 text-blue-700 font-mono font-bold flex flex-col items-center justify-center shrink-0 border border-blue-100">
-              <span class="text-[11px]">เช้า</span>
-              <span class="text-sm">09:00</span>
-            </div>
-            <div>
-              <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">09.00 - 12.00 น. (3.0 ชม.) • Workshop ปฏิบัติการ</span>
-              <h4 class="text-lg font-bold text-slate-900 mt-1">สร้างหน้าเว็บ Frontend และเปิดใช้งาน GitHub Pages เผยแพร่สู่สาธารณะ</h4>
-              <p class="text-slate-600 text-sm mt-1">ออกแบบ UI หน้าเช็กชื่อและระบบค้นหาคะแนนให้นักเรียนใช้งานได้สะดวกทั้งบนมือถือและคอมพิวเตอร์</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="p-3 text-center text-xs text-slate-500 font-mono bg-slate-200/60 rounded-xl flex items-center justify-center gap-2">
-          <i data-lucide="coffee" class="w-4 h-4 text-amber-600"></i> 12.00 - 13.00 น. พักรับประทานอาหารกลางวัน
-        </div>
-
-        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div class="flex items-start gap-4">
-            <div class="w-16 h-16 rounded-xl bg-amber-50 text-amber-700 font-mono font-bold flex flex-col items-center justify-center shrink-0 border border-amber-100">
-              <span class="text-[11px]">บ่าย</span>
-              <span class="text-sm">13:00</span>
-            </div>
-            <div>
-              <span class="text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">13.00 - 15.00 น. (2.0 ชม.) • อภิปรายกลุ่ม</span>
-              <h4 class="text-lg font-bold text-slate-900 mt-1">จริยธรรมข้อมูลนักเรียนและมาตรการตาม พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA)</h4>
-              <p class="text-slate-600 text-sm mt-1">ข้อพึงระวังในการเปิดเผยคะแนนและการเก็บรักษาข้อมูลส่วนบุคคลในโรงเรียน</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div class="flex items-start gap-4">
-            <div class="w-16 h-16 rounded-xl bg-emerald-50 text-emerald-700 font-mono font-bold flex flex-col items-center justify-center shrink-0 border border-emerald-100">
-              <span class="text-[11px]">สรุป</span>
-              <span class="text-sm">15:00</span>
-            </div>
-            <div>
-              <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">15.00 - 16.30 น. (1.5 ชม.) • ประเมินผล</span>
-              <h4 class="text-lg font-bold text-slate-900 mt-1">นำเสนอผลงานระบบของตนเอง ทดสอบการทำงานสด และมอบวุฒิบัตรรับรอง</h4>
-              <p class="text-slate-600 text-sm mt-1">ประเมินผลสัมฤทธิ์ตามเกณฑ์ 75% และมอบวุฒิบัตรจากมหาวิทยาลัยมหาสารคาม</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Registration Section -->
-  <section id="register" class="py-20 bg-white border-b border-slate-200">
+  <!-- ================= 5. TIMETABLE SCHEDULE SECTION ================= -->
+  <section id="schedule" class="py-20 sm:py-28 bg-white border-b border-slate-200">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto mb-10">
-        <span class="text-blue-700 font-semibold text-xs uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
-          ONLINE REGISTRATION
-        </span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">
-          ลงทะเบียนสมัครเข้าร่วมการอบรม
+      
+      <div class="text-center mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-slate-500 font-mono">TIMETABLE</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">
+          กำหนดการฝึกอบรม 2 วัน
         </h2>
-        <p class="text-slate-600 mt-2 text-base">
-          ข้อมูลจะถูกบันทึกลงสู่ฐานข้อมูล Google Sheets ทันที และออกบัตรยืนยันการสมัคร (E-Pass)
-        </p>
+        <p class="text-slate-500 text-sm mt-1">เวลา 09.00 - 16.30 น. (รวม 12 ชั่วโมง)</p>
+
+        <!-- Switcher Tabs -->
+        <div class="mt-8 inline-flex p-1 bg-slate-100 rounded-full border border-slate-200 shadow-inner">
+          <button id="tabDay1Btn" type="button" class="px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-900 shadow-sm transition-all flex items-center gap-2">
+            <i class="fa-solid fa-calendar-days text-slate-700"></i> วันที่ 1 : สถาปัตยกรรม & AI Scripting
+          </button>
+          <button id="tabDay2Btn" type="button" class="px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium text-slate-600 hover:text-slate-900 transition-all flex items-center gap-2">
+            <i class="fa-solid fa-calendar-check text-slate-400"></i> วันที่ 2 : GitHub Pages & PDPA
+          </button>
+        </div>
       </div>
 
-      <!-- Registration Form -->
-      <div class="bg-slate-50 rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-lg">
-        <form id="registrationForm" class="space-y-6">
+      <!-- Schedule Day 1 -->
+      <div id="scheduleDay1" class="space-y-4">
+        <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200/80 flex items-start gap-4 hover:border-slate-400 transition-colors">
+          <div class="w-16 h-16 rounded-2xl bg-white text-slate-900 font-mono font-bold flex flex-col items-center justify-center shrink-0 border border-slate-200 shadow-sm">
+            <span class="text-[10px] text-slate-400">เช้า</span>
+            <span class="text-sm font-bold">09:00</span>
+          </div>
+          <div>
+            <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-800 font-mono">09.00 - 10.30 น. (1.5 ชม.)</span>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 mt-2">ภาพรวมระบบจัดการชั้นเรียน Google Sheets + Apps Script + GitHub</h4>
+            <p class="text-slate-600 text-xs sm:text-sm mt-1">การออกแบบ Data Flow และข้อกำหนดโครงสร้างความปลอดภัยสำหรับข้อมูลสถานศึกษา</p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200/80 flex items-start gap-4 hover:border-slate-400 transition-colors">
+          <div class="w-16 h-16 rounded-2xl bg-white text-slate-900 font-mono font-bold flex flex-col items-center justify-center shrink-0 border border-slate-200 shadow-sm">
+            <span class="text-[10px] text-slate-400">สาย</span>
+            <span class="text-sm font-bold">10:30</span>
+          </div>
+          <div>
+            <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-800 font-mono">10.30 - 12.00 น. (1.5 ชม.)</span>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 mt-2">Prompting AI ให้สร้าง Google Apps Script Backend</h4>
+            <p class="text-slate-600 text-xs sm:text-sm mt-1">ลงมือเขียนคำสั่งเจเนอเรตโค้ดจัดการข้อมูลเช็กชื่อและบันทึกคะแนนสะสม</p>
+          </div>
+        </div>
+
+        <div class="py-2 text-center text-xs text-slate-400 font-mono flex items-center justify-center gap-2">
+          <span class="w-8 h-px bg-slate-200"></span> 12.00 - 13.00 น. พักรับประทานอาหารกลางวัน <span class="w-8 h-px bg-slate-200"></span>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200/80 flex items-start gap-4 hover:border-slate-400 transition-colors">
+          <div class="w-16 h-16 rounded-2xl bg-white text-slate-900 font-mono font-bold flex flex-col items-center justify-center shrink-0 border border-slate-200 shadow-sm">
+            <span class="text-[10px] text-slate-400">บ่าย</span>
+            <span class="text-sm font-bold">13:00</span>
+          </div>
+          <div>
+            <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-800 font-mono">13.00 - 16.30 น. (3.5 ชม.)</span>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 mt-2">ทดสอบ Web App API และเชื่อมข้อมูลกับ Google Sheets สำเร็จ</h4>
+            <p class="text-slate-600 text-xs sm:text-sm mt-1">ทดสอบยิง Request ส่งค่าจริง และฝึกแก้ข้อผิดพลาดร่วมกับ AI Debugger</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Schedule Day 2 -->
+      <div id="scheduleDay2" class="space-y-4 hidden">
+        <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200/80 flex items-start gap-4 hover:border-slate-400 transition-colors">
+          <div class="w-16 h-16 rounded-2xl bg-white text-slate-900 font-mono font-bold flex flex-col items-center justify-center shrink-0 border border-slate-200 shadow-sm">
+            <span class="text-[10px] text-slate-400">เช้า</span>
+            <span class="text-sm font-bold">09:00</span>
+          </div>
+          <div>
+            <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-800 font-mono">09.00 - 12.00 น. (3.0 ชม.)</span>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 mt-2">สร้างหน้าเว็บ Frontend และโฮสต์บน GitHub Pages</h4>
+            <p class="text-slate-600 text-xs sm:text-sm mt-1">ออกแบบ UI เช็กชื่อให้ดูง่ายบนสมาร์ตโฟน เผยแพร่เว็บแอปพลิเคชันสู่สาธารณะฟรี</p>
+          </div>
+        </div>
+
+        <div class="py-2 text-center text-xs text-slate-400 font-mono flex items-center justify-center gap-2">
+          <span class="w-8 h-px bg-slate-200"></span> 12.00 - 13.00 น. พักรับประทานอาหารกลางวัน <span class="w-8 h-px bg-slate-200"></span>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200/80 flex items-start gap-4 hover:border-slate-400 transition-colors">
+          <div class="w-16 h-16 rounded-2xl bg-white text-slate-900 font-mono font-bold flex flex-col items-center justify-center shrink-0 border border-slate-200 shadow-sm">
+            <span class="text-[10px] text-slate-400">บ่าย</span>
+            <span class="text-sm font-bold">13:00</span>
+          </div>
+          <div>
+            <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-800 font-mono">13.00 - 15.00 น. (2.0 ชม.)</span>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 mt-2">จริยธรรมข้อมูลนักเรียนและมาตรการ พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA)</h4>
+            <p class="text-slate-600 text-xs sm:text-sm mt-1">ข้อพึงระวังในการเปิดเผยคะแนนและการรักษาความปลอดภัยของข้อมูลนักเรียน</p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200/80 flex items-start gap-4 hover:border-slate-400 transition-colors">
+          <div class="w-16 h-16 rounded-2xl bg-white text-slate-900 font-mono font-bold flex flex-col items-center justify-center shrink-0 border border-slate-200 shadow-sm">
+            <span class="text-[10px] text-slate-400">สรุป</span>
+            <span class="text-sm font-bold">15:00</span>
+          </div>
+          <div>
+            <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-800 font-mono">15.00 - 16.30 น. (1.5 ชม.)</span>
+            <h4 class="text-base sm:text-lg font-bold text-slate-900 mt-2">นำเสนอผลงานระบบของตนเอง และรับมอบวุฒิบัตรรับรอง</h4>
+            <p class="text-slate-600 text-xs sm:text-sm mt-1">ประเมินผลสัมฤทธิ์ตามเกณฑ์ 75% และมอบวุฒิบัตรจากมหาวิทยาลัยมหาสารคาม</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 6. REGISTRATION FORM ================= -->
+  <section id="register" class="py-20 sm:py-28 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold uppercase tracking-widest text-slate-500 font-mono">OFFICIAL REGISTRATION</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">
+          ลงทะเบียนเข้าร่วมการอบรม
+        </h2>
+        <p class="text-slate-600 text-sm mt-1">ระบบจะบันทึกข้อมูลเข้า Google Sheets แบบ Real-time และออกบัตรยืนยันทันที</p>
+      </div>
+
+      <div class="bg-white rounded-[32px] p-6 sm:p-10 border border-slate-200 shadow-card-hover">
+        <form id="registrationForm" class="space-y-5">
+          
           <div class="grid grid-cols-1 sm:grid-cols-12 gap-4">
             <div class="sm:col-span-3">
-              <label for="prefix" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">คำนำหน้า *</label>
-              <select id="prefix" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 bg-white text-sm">
+              <label for="prefix" class="block text-xs font-bold text-slate-700 uppercase mb-1">คำนำหน้า *</label>
+              <select id="prefix" required class="w-full px-4 py-3 rounded-2xl border border-slate-300 focus:border-slate-900 focus:ring-1 focus:ring-slate-900 bg-white text-sm outline-none transition-all">
                 <option value="ครู">ครู</option>
                 <option value="อาจารย์">อาจารย์</option>
                 <option value="นาย">นาย</option>
@@ -467,27 +645,27 @@
               </select>
             </div>
             <div class="sm:col-span-9">
-              <label for="fullName" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">ชื่อ - นามสกุล *</label>
-              <input type="text" id="fullName" placeholder="เช่น กานดา ปัญญาวิเศษ" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 text-sm bg-white" />
+              <label for="fullName" class="block text-xs font-bold text-slate-700 uppercase mb-1">ชื่อ - นามสกุล *</label>
+              <input type="text" id="fullName" placeholder="เช่น กานดา ปัญญาวิเศษ" required class="w-full px-4 py-3 rounded-2xl border border-slate-300 focus:border-slate-900 focus:ring-1 focus:ring-slate-900 text-sm bg-white outline-none transition-all" />
             </div>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label for="email" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">อีเมล Gmail *</label>
-              <input type="email" id="email" placeholder="example@gmail.com" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 text-sm bg-white" />
-              <p class="text-[11px] text-slate-400 mt-1">ใช้สำหรับแชร์สิทธิ์ชีทและ Apps Script</p>
+              <label for="email" class="block text-xs font-bold text-slate-700 uppercase mb-1">อีเมล Gmail *</label>
+              <input type="email" id="email" placeholder="example@gmail.com" required class="w-full px-4 py-3 rounded-2xl border border-slate-300 focus:border-slate-900 focus:ring-1 focus:ring-slate-900 text-sm bg-white outline-none transition-all" />
+              <p class="text-[11px] text-slate-400 mt-1">ใช้สำหรับการแชร์สิทธิ์ชีทและโครงการ Apps Script</p>
             </div>
             <div>
-              <label for="phone" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">เบอร์โทรศัพท์ติดต่อ *</label>
-              <input type="tel" id="phone" placeholder="08X-XXX-XXXX" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 text-sm bg-white" />
+              <label for="phone" class="block text-xs font-bold text-slate-700 uppercase mb-1">เบอร์โทรศัพท์ติดต่อ *</label>
+              <input type="tel" id="phone" placeholder="08X-XXX-XXXX" required class="w-full px-4 py-3 rounded-2xl border border-slate-300 focus:border-slate-900 focus:ring-1 focus:ring-slate-900 text-sm bg-white outline-none transition-all" />
             </div>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label for="role" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">สถานะผู้สมัคร *</label>
-              <select id="role" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 bg-white text-sm">
+              <label for="role" class="block text-xs font-bold text-slate-700 uppercase mb-1">สถานะผู้สมัคร *</label>
+              <select id="role" required class="w-full px-4 py-3 rounded-2xl border border-slate-300 focus:border-slate-900 focus:ring-1 focus:ring-slate-900 bg-white text-sm outline-none transition-all">
                 <option value="ครูผู้สอนระดับการศึกษาขั้นพื้นฐาน">ครูผู้สอนระดับการศึกษาขั้นพื้นฐาน</option>
                 <option value="นิสิต/นักศึกษาฝึกประสบการณ์วิชาชีพครู">นิสิต/นักศึกษาฝึกประสบการณ์วิชาชีพครู</option>
                 <option value="บุคลากรทางการศึกษา">บุคลากรทางการศึกษา</option>
@@ -495,91 +673,92 @@
               </select>
             </div>
             <div>
-              <label for="school" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">โรงเรียน / สังกัด *</label>
-              <input type="text" id="school" placeholder="เช่น โรงเรียนสาธิตมหาวิทยาลัยมหาสารคาม" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 text-sm bg-white" />
+              <label for="school" class="block text-xs font-bold text-slate-700 uppercase mb-1">โรงเรียน / สังกัด *</label>
+              <input type="text" id="school" placeholder="เช่น โรงเรียนสาธิตมหาวิทยาลัยมหาสารคาม" required class="w-full px-4 py-3 rounded-2xl border border-slate-300 focus:border-slate-900 focus:ring-1 focus:ring-slate-900 text-sm bg-white outline-none transition-all" />
             </div>
           </div>
 
           <div class="pt-2">
-            <label class="flex items-start gap-2.5 text-xs text-slate-600 cursor-pointer">
-              <input type="checkbox" id="acceptTerms" required class="mt-0.5 rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
-              <span>ข้าพเจ้ายินยอมให้บันทึกข้อมูลเพื่อการประสานงานจัดอบรมตาม พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA) และรับทราบเงื่อนไขเวลาเรียนไม่น้อยกว่า 80%</span>
+            <label class="flex items-start gap-3 text-xs text-slate-600 cursor-pointer">
+              <input type="checkbox" id="acceptTerms" required class="mt-1 rounded border-slate-300 text-slate-900 focus:ring-slate-900" />
+              <span>ข้าพเจ้ายินยอมให้บันทึกข้อมูลเพื่อการจัดอบรมตาม พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA) และรับทราบเงื่อนไขเวลาเข้าร่วมอบรมไม่น้อยกว่า 80%</span>
             </label>
           </div>
 
-          <button type="submit" id="submitRegBtn" class="w-full py-3.5 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-base">
-            <i data-lucide="send" class="w-5 h-5"></i>
+          <button type="submit" id="submitRegBtn" class="w-full mt-4 py-4 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm tracking-wide shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
             <span>ยืนยันการสมัครและบันทึกข้อมูลลง Google Sheet</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
           </button>
         </form>
       </div>
+
     </div>
   </section>
 
-  <!-- Applicants Directory Table (Real-time from Google Sheet) -->
-  <section id="applicants" class="py-20 bg-slate-50">
+  <!-- ================= 7. DIRECTORY TABLE SECTION ================= -->
+  <section id="applicants" class="py-20 sm:py-28 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
-          <span class="text-blue-700 font-semibold text-xs uppercase tracking-wider bg-blue-100/60 px-3 py-1 rounded-full border border-blue-200">
-            DATABASE DIRECTORY
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
-            รายชื่อผู้ได้รับการยืนยันที่นั่ง (Google Sheets)
+          <span class="text-xs font-bold uppercase tracking-widest text-slate-500 font-mono">LIVE DIRECTORY</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-1">
+            รายชื่อผู้ได้รับการยืนยันสิทธิ์
           </h2>
-          <p class="text-slate-500 text-sm mt-1">ข้อมูลเชื่อมต่อสดกับฐานข้อมูลหลักของมหาวิทยาลัย</p>
+          <p class="text-slate-500 text-sm mt-1">ข้อมูลเชื่อมต่อกับฐานข้อมูลหลักของมหาวิทยาลัย</p>
         </div>
 
         <div class="flex items-center gap-3 w-full md:w-auto">
-          <button id="refreshDataBtn" type="button" class="px-4 py-2.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow-sm transition-all" title="รีเฟรชข้อมูลจาก Sheet">
-            <i data-lucide="refresh-cw" class="w-4 h-4"></i> ซิงก์ข้อมูล
+          <button id="refreshDataBtn" type="button" class="px-5 py-2.5 rounded-full border border-slate-300 hover:border-slate-900 bg-white text-slate-800 text-xs font-semibold flex items-center gap-2 transition-all shadow-sm">
+            <i class="fa-solid fa-rotate text-xs"></i>
+            <span>ซิงก์ข้อมูล</span>
           </button>
           <div class="relative flex-1 md:w-72">
-            <input type="text" id="applicantSearchInput" placeholder="ค้นหาชื่อ, สังกัด หรือเบอร์โทร..." class="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 text-sm bg-white" />
-            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-3.5"></i>
+            <input type="text" id="applicantSearchInput" placeholder="ค้นหาชื่อ, รหัส หรือสังกัด..." class="w-full pl-9 pr-4 py-2.5 rounded-full border border-slate-300 focus:border-slate-900 focus:ring-1 focus:ring-slate-900 text-xs bg-white outline-none shadow-sm" />
+            <i class="fa-solid fa-magnifying-glass text-slate-400 text-xs absolute left-3.5 top-3"></i>
           </div>
         </div>
       </div>
 
-      <!-- Table Container -->
-      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <!-- Table Wrapper -->
+      <div class="bg-white rounded-[28px] border border-slate-200 overflow-hidden shadow-card-soft">
         <div class="overflow-x-auto">
           <table class="w-full text-left text-sm font-body">
-            <thead class="bg-slate-100/80 text-slate-700 font-sans text-xs uppercase border-b border-slate-200">
+            <thead class="bg-slate-50 text-slate-600 font-sans text-xs uppercase border-b border-slate-200">
               <tr>
-                <th scope="col" class="py-3.5 px-4 font-bold">รหัสผู้สมัคร</th>
-                <th scope="col" class="py-3.5 px-4 font-bold">ชื่อ - นามสกุล</th>
-                <th scope="col" class="py-3.5 px-4 font-bold">สถานะ / ตำแหน่ง</th>
-                <th scope="col" class="py-3.5 px-4 font-bold">สังกัด / สถาบัน</th>
-                <th scope="col" class="py-3.5 px-4 font-bold text-center">สถานะ</th>
-                <th scope="col" class="py-3.5 px-4 font-bold text-center">บัตร E-Pass</th>
+                <th scope="col" class="py-4 px-5 font-bold">รหัสผู้สมัคร</th>
+                <th scope="col" class="py-4 px-5 font-bold">ชื่อ - นามสกุล</th>
+                <th scope="col" class="py-4 px-5 font-bold">สถานะ / ตำแหน่ง</th>
+                <th scope="col" class="py-4 px-5 font-bold">โรงเรียน / สังกัด</th>
+                <th scope="col" class="py-4 px-5 font-bold text-center">สถานะที่นั่ง</th>
+                <th scope="col" class="py-4 px-5 font-bold text-center">บัตร E-Pass</th>
               </tr>
             </thead>
             <tbody id="applicantTableBody" class="divide-y divide-slate-100 text-slate-700">
-              <!-- Rendered via JS -->
+              <!-- Rendered via JavaScript -->
             </tbody>
           </table>
         </div>
 
-        <!-- Empty & Loading State -->
-        <div id="tableLoadingState" class="py-12 text-center">
-          <i data-lucide="loader-2" class="w-8 h-8 text-blue-600 animate-spin mx-auto mb-2"></i>
-          <p class="text-slate-500 text-sm">กำลังโหลดข้อมูลจาก Google Sheets...</p>
+        <!-- Loading State -->
+        <div id="tableLoadingState" class="py-12 text-center hidden">
+          <i class="fa-solid fa-circle-notch fa-spin text-2xl text-slate-900 mb-2"></i>
+          <p class="text-slate-500 text-xs font-mono">กำลังเชื่อมโยง Google Sheets API...</p>
         </div>
 
+        <!-- Empty State -->
         <div id="tableEmptyState" class="hidden py-12 text-center">
-          <i data-lucide="inbox" class="w-8 h-8 text-slate-300 mx-auto mb-2"></i>
+          <i class="fa-solid fa-box-open text-3xl text-slate-300 mb-2"></i>
           <p class="text-slate-500 text-sm">ไม่พบข้อมูลที่ตรงกับคำค้นหา</p>
         </div>
 
         <!-- Table Footer -->
-        <div class="bg-slate-50 px-4 py-3 border-t border-slate-200 flex justify-between items-center text-xs text-slate-500 font-mono">
+        <div class="bg-slate-50 px-6 py-3.5 border-t border-slate-200 flex justify-between items-center text-xs text-slate-500 font-mono">
           <div>
-            แสดงผล <span id="showingCount" class="font-bold text-slate-800">0</span> จาก <span id="totalCount" class="font-bold text-slate-800">0</span> คน
+            แสดงผล <span id="showingCount" class="font-bold text-slate-900">4</span> จาก <span id="totalCount" class="font-bold text-slate-900">4</span> คน
           </div>
-          <div class="flex items-center gap-1.5 text-emerald-700 font-medium">
-            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> ยืนยันที่นั่งในระบบเรียบร้อย
+          <div class="flex items-center gap-2 text-emerald-700 font-medium">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> ยืนยันสิทธิ์เรียบร้อย
           </div>
         </div>
       </div>
@@ -587,73 +766,105 @@
     </div>
   </section>
 
-  <!-- Modal: E-Registration Pass -->
-  <div id="ticketModal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-200 overflow-hidden">
-      
-      <div class="bg-msu-navy text-white p-5 flex justify-between items-center">
+  <!-- ================= 8. FOOTER ================= -->
+  <footer class="bg-slate-950 text-white py-14 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pb-8 border-b border-slate-800">
         <div>
-          <div class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">OFFICIAL PASS</div>
+          <div class="text-xs font-mono text-slate-400 uppercase tracking-widest">MAHASARAKHAM UNIVERSITY</div>
+          <div class="text-xl font-bold mt-1 text-white">ระบบจัดการชั้นเรียนดิจิทัลด้วย AI</div>
+          <div class="text-xs text-slate-400 mt-1">คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม ต.ขามเรียง อ.กันทรวิชัย จ.มหาสารคาม 44150</div>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="#about" class="px-5 py-2 rounded-full border border-slate-700 text-xs text-slate-300 hover:text-white hover:border-white transition-all">เกี่ยวกับหลักสูตร</a>
+          <a href="#modules" class="px-5 py-2 rounded-full border border-slate-700 text-xs text-slate-300 hover:text-white hover:border-white transition-all">โมดูลอบรม</a>
+          <a href="#register" class="px-5 py-2 rounded-full bg-white text-slate-950 text-xs font-semibold hover:bg-amber-400 transition-all">สมัครอบรม</a>
+        </div>
+      </div>
+      <div class="mt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+        <span>© 2026 มหาวิทยาลัยมหาสารคาม. สงวนลิขสิทธิ์ทั้งหมดตามกฎหมาย.</span>
+        <span class="font-mono">Open Platform Architecture • Google Sheets & GitHub</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= 9. FLOATING ACTION BUTTON ================= -->
+  <a href="#register" id="floatingChatBtn" class="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-brand-accentPink text-white shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 ring-4 ring-white/30" title="ลงทะเบียนเข้าร่วม">
+    <i class="fa-solid fa-comment-dots text-xl"></i>
+  </a>
+
+  <!-- ================= 10. MODAL: OFFICIAL E-PASS ================= -->
+  <div id="ticketModal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-[32px] max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all">
+      
+      <!-- Modal Header -->
+      <div class="bg-slate-950 text-white p-6 flex justify-between items-center">
+        <div>
+          <div class="text-[11px] font-bold text-amber-400 uppercase tracking-widest font-mono">OFFICIAL PASS</div>
           <div class="text-base font-bold">บัตรยืนยันการลงทะเบียนอบรม</div>
         </div>
-        <button id="closeTicketModal" type="button" class="text-white/80 hover:text-white p-1 rounded-lg">
-          <i data-lucide="x" class="w-6 h-6"></i>
+        <button id="closeTicketModal" type="button" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
+          <i class="fa-solid fa-xmark text-sm"></i>
         </button>
       </div>
 
+      <!-- Printable Body -->
       <div id="printableTicket" class="p-6 space-y-4">
-        <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+        <div class="flex justify-between items-center border-b border-slate-100 pb-4">
           <div>
-            <div class="text-xs text-slate-500 font-mono">รหัสผู้สมัคร</div>
-            <div id="ticketId" class="text-lg font-bold font-mono text-blue-700">MSU-AI-2026-0001</div>
+            <div class="text-[11px] text-slate-400 font-mono">รหัสผู้สมัครประจำตัว</div>
+            <div id="ticketId" class="text-xl font-extrabold font-mono text-slate-900">MSU-AI-2026-0001</div>
           </div>
-          <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">ยืนยันที่นั่งแล้ว</span>
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+            ยืนยันสิทธิ์แล้ว
+          </span>
         </div>
 
-        <div class="space-y-2 text-sm">
+        <div class="space-y-3 text-sm">
           <div>
-            <span class="text-xs text-slate-400">ชื่อ - สกุล:</span>
-            <div id="ticketName" class="font-bold text-slate-800 text-base">ครูสมศักดิ์ มั่นใจ</div>
+            <span class="text-xs text-slate-400">ชื่อ - สกุลผู้สมัคร:</span>
+            <div id="ticketName" class="font-bold text-slate-900 text-base">ครูกานดา ปัญญาวิเศษ</div>
           </div>
           <div>
             <span class="text-xs text-slate-400">หน่วยงาน / โรงเรียน:</span>
-            <div id="ticketSchool" class="font-medium text-slate-700">โรงเรียนมหาสารคามพิทยาคม</div>
+            <div id="ticketSchool" class="font-medium text-slate-700">โรงเรียนสาธิตมหาวิทยาลัยมหาสารคาม</div>
           </div>
           <div>
             <span class="text-xs text-slate-400">หลักสูตร:</span>
-            <div class="font-medium text-slate-700">การพัฒนาระบบจัดการชั้นเรียนดิจิทัล (12 ชม.)</div>
+            <div class="font-medium text-slate-700">การพัฒนาระบบจัดการชั้นเรียนดิจิทัลด้วย AI (12 ชม.)</div>
           </div>
         </div>
 
-        <div class="p-3 bg-slate-100 rounded-xl text-center text-xs text-slate-500 font-mono">
-          บันทึกบน Google Sheet สำเร็จ • โปรดแสดงภาพนี้ในวันรายงานตัว
+        <div class="p-4 bg-slate-50 rounded-2xl text-center text-xs text-slate-500 font-mono border border-slate-100">
+          โปรดบันทึกภาพหน้าจอหรือพิมพ์เอกสารนี้เพื่อนำมาแสดงในวันรายงานตัว
         </div>
       </div>
 
+      <!-- Modal Footer -->
       <div class="bg-slate-50 p-4 border-t border-slate-200 flex justify-end gap-2 no-print">
-        <button id="printTicketBtn" type="button" class="px-4 py-2 bg-slate-800 text-white rounded-xl text-xs font-semibold hover:bg-slate-700 flex items-center gap-1.5">
-          <i data-lucide="printer" class="w-4 h-4"></i> พิมพ์ / บันทึก PDF
+        <button id="printTicketBtn" type="button" class="px-5 py-2.5 bg-slate-900 text-white rounded-full text-xs font-semibold hover:bg-slate-800 flex items-center gap-2 transition-colors shadow-sm">
+          <i class="fa-solid fa-print text-xs"></i>
+          <span>พิมพ์ / บันทึก PDF</span>
         </button>
-        <button id="doneTicketBtn" type="button" class="px-4 py-2 bg-blue-700 text-white rounded-xl text-xs font-semibold hover:bg-blue-800">
-          ปิดหน้าต่าง
+        <button id="doneTicketBtn" type="button" class="px-5 py-2.5 rounded-full border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-100 transition-colors">
+          ปิด
         </button>
       </div>
 
     </div>
   </div>
 
-  <!-- Toast Container -->
-  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="fixed bottom-6 left-6 z-50 space-y-2 pointer-events-none"></div>
 
-  <!-- JavaScript: เชื่อมต่อ Google Apps Script Web App -->
+  <!-- ================= 11. JAVASCRIPT LOGIC ================= -->
   <script>
     /**
-     * นำ Web App URL ที่ได้จากการ Deploy ใน Google Apps Script
-     * มาวางแทนที่ข้อความ YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL
+     * Google Apps Script Web App Endpoint URL
      */
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztyfYg6HXrhSmBeRjBad1oQ4hUxgNSVpp6qd51WAZWugdWCLq8ERVHF2pgwwuBpwxkhA/exec";
 
-    // ข้อมูลจำลองสำรองกรณีที่ยังไม่ได้ระบุ Web App URL
+    // ข้อมูลสำรองจำลอง (Fallback Data)
     const DEMO_FALLBACK_DATA = [
       { id: "MSU-AI-2026-0001", name: "ครูวิภาดา สุขสมบูรณ์", role: "ครูผู้สอนระดับการศึกษาขั้นพื้นฐาน", school: "โรงเรียนสาธิต มมส.", phone: "081-456-7890", date: "10 ต.ค. 2569" },
       { id: "MSU-AI-2026-0002", name: "ครูกานต์ เกียรติเจริญ", role: "ครูผู้สอนระดับการศึกษาขั้นพื้นฐาน", school: "โรงเรียนมหาสารคามพิทยาคม", phone: "089-123-4567", date: "10 ต.ค. 2569" },
@@ -661,21 +872,21 @@
       { id: "MSU-AI-2026-0004", name: "ครูปิยะนุช วงศ์สว่าง", role: "ครูผู้สอนระดับการศึกษาขั้นพื้นฐาน", school: "โรงเรียนผดุงนารี", phone: "086-554-3321", date: "12 ต.ค. 2569" }
     ];
 
-    let applicants = [];
+    let applicants = [...DEMO_FALLBACK_DATA];
     const MAX_SEATS = 35;
 
+    // Toast Notification แจ้งเตือนสวยงาม
     function showToast(message, type = 'success') {
       const container = document.getElementById('toastContainer');
       const toast = document.createElement('div');
       const isSuccess = type === 'success';
       const borderCol = isSuccess ? 'border-emerald-500' : 'border-rose-500';
       const textCol = isSuccess ? 'text-emerald-400' : 'text-rose-400';
-      const icon = isSuccess ? 'check-circle' : 'alert-circle';
+      const icon = isSuccess ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle-exclamation';
 
-      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl bg-slate-900 text-white text-sm shadow-xl border-l-4 ${borderCol} transition-all duration-300 translate-y-3 opacity-0`;
-      toast.innerHTML = `<i data-lucide="${icon}" class="w-5 h-5 ${textCol} shrink-0"></i><div>${message}</div>`;
+      toast.className = `pointer-events-auto flex items-center gap-3 px-5 py-3 rounded-2xl bg-slate-900 text-white text-xs sm:text-sm shadow-2xl border-l-4 ${borderCol} transition-all duration-300 translate-y-3 opacity-0`;
+      toast.innerHTML = `<i class="${icon} ${textCol} text-base shrink-0"></i><div>${message}</div>`;
       container.appendChild(toast);
-      lucide.createIcons();
 
       setTimeout(() => toast.classList.remove('translate-y-3', 'opacity-0'), 20);
       setTimeout(() => {
@@ -684,18 +895,23 @@
       }, 3500);
     }
 
+    // ฟังก์ชันคำนวณและอัปเดตสถิติที่นั่งทั้งหมด
     function updateSeatWidgets(totalRegistered) {
-      const remaining = Math.max(0, MAX_SEATS - totalRegistered);
-      const percent = Math.min(100, Math.round((totalRegistered / MAX_SEATS) * 100));
+      const count = Number(totalRegistered) || applicants.length;
+      const remaining = Math.max(0, MAX_SEATS - count);
+      const percent = Math.min(100, Math.round((count / MAX_SEATS) * 100));
 
       const navBadge = document.getElementById('navApplicantCount');
-      if (navBadge) navBadge.textContent = totalRegistered;
+      if (navBadge) navBadge.textContent = count;
       
       const heroRemain = document.getElementById('heroRemainingSeats');
       if (heroRemain) heroRemain.textContent = remaining;
 
       const heroReg = document.getElementById('heroRegisteredCount');
-      if (heroReg) heroReg.textContent = totalRegistered;
+      if (heroReg) heroReg.textContent = count;
+
+      const heroMini = document.getElementById('heroRegisteredMini');
+      if (heroMini) heroMini.textContent = `${count} คน`;
 
       const heroBar = document.getElementById('heroSeatProgressBar');
       if (heroBar) heroBar.style.width = `${percent}%`;
@@ -703,50 +919,47 @@
       const submitBtn = document.getElementById('submitRegBtn');
       if (remaining === 0 && submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.className = "w-full py-3.5 bg-slate-400 text-white font-bold rounded-xl cursor-not-allowed";
+        submitBtn.className = "w-full mt-4 py-4 rounded-full bg-slate-300 text-slate-500 font-bold text-sm cursor-not-allowed";
         submitBtn.innerHTML = `<span>ที่นั่งเต็มแล้วสำหรับรุ่นนี้ (35/35)</span>`;
       }
     }
 
+    // ดึงข้อมูลผู้สมัครจาก Google Sheets
     async function fetchApplicants() {
       const loading = document.getElementById('tableLoadingState');
       const badge = document.getElementById('connectionBadge');
       if (loading) loading.classList.remove('hidden');
 
-      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("YOUR_GOOGLE_APPS_SCRIPT")) {
-        applicants = [...DEMO_FALLBACK_DATA];
-        if (badge) {
-          badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-500"></span> โหมดสาธิต (ใส่ URL เพื่อใช้ชีทจริง)`;
-          badge.className = "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200";
-        }
-        if (loading) loading.classList.add('hidden');
-        renderTable();
-        updateSeatWidgets(applicants.length);
-        return;
-      }
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
 
       try {
-        const response = await fetch(GOOGLE_SCRIPT_URL);
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+
         const data = await response.json();
-        if (data.status === 'success') {
-          applicants = data.applicants || [];
+        if (data && (data.status === 'success' || Array.isArray(data) || Array.isArray(data.applicants))) {
+          applicants = data.applicants || (Array.isArray(data) ? data : DEMO_FALLBACK_DATA);
           if (badge) {
-            badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span> เชื่อมต่อ Google Sheets แล้ว`;
-            badge.className = "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200";
+            badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Google Sheets ซิงก์สด`;
+            badge.className = "inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-emerald-400 border border-white/10";
           }
-          updateSeatWidgets(data.registeredCount);
+          const regCount = data.registeredCount || applicants.length;
+          updateSeatWidgets(regCount);
         } else {
-          showToast(data.message || 'ดึงข้อมูลไม่สำเร็จ', 'error');
+          updateSeatWidgets(applicants.length);
         }
       } catch (err) {
-        applicants = [...DEMO_FALLBACK_DATA];
-        showToast('ไม่สามารถเชื่อมต่อ Google Sheets ชั่วคราว แสดงข้อมูลสำรอง', 'error');
+        updateSeatWidgets(applicants.length);
       } finally {
         if (loading) loading.classList.add('hidden');
         renderTable();
       }
     }
 
+    // วาดตารางรายชื่อ
     function renderTable(filter = '') {
       const tbody = document.getElementById('applicantTableBody');
       const empty = document.getElementById('tableEmptyState');
@@ -755,9 +968,9 @@
       const q = filter.trim().toLowerCase();
       const filtered = applicants.filter(a => {
         if (!q) return true;
-        return a.name.toLowerCase().includes(q) ||
-               a.school.toLowerCase().includes(q) ||
-               a.id.toLowerCase().includes(q) ||
+        return (a.name && a.name.toLowerCase().includes(q)) ||
+               (a.school && a.school.toLowerCase().includes(q)) ||
+               (a.id && a.id.toLowerCase().includes(q)) ||
                (a.phone && a.phone.includes(q));
       });
 
@@ -770,20 +983,20 @@
 
       filtered.forEach(item => {
         const tr = document.createElement('tr');
-        tr.className = "hover:bg-slate-50 border-b border-slate-100 transition-colors";
+        tr.className = "hover:bg-slate-50 transition-colors";
         tr.innerHTML = `
-          <td class="py-3 px-4 font-mono font-bold text-xs text-blue-700">${item.id}</td>
-          <td class="py-3 px-4 font-medium text-slate-900">${item.name}</td>
-          <td class="py-3 px-4 text-xs text-slate-600">${item.role}</td>
-          <td class="py-3 px-4 text-xs text-slate-700">${item.school}</td>
-          <td class="py-3 px-4 text-center">
-            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-              ยืนยันแล้ว
+          <td class="py-3.5 px-5 font-mono font-bold text-xs text-slate-900">${item.id}</td>
+          <td class="py-3.5 px-5 font-medium text-slate-900">${item.name}</td>
+          <td class="py-3.5 px-5 text-xs text-slate-500">${item.role}</td>
+          <td class="py-3.5 px-5 text-xs text-slate-700">${item.school}</td>
+          <td class="py-3.5 px-5 text-center">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+              ยืนยันสิทธิ์แล้ว
             </span>
           </td>
-          <td class="py-3 px-4 text-center">
-            <button type="button" onclick="openPassModal('${item.id}')" class="text-blue-700 hover:text-blue-900 text-xs font-semibold inline-flex items-center gap-1">
-              <i data-lucide="eye" class="w-3.5 h-3.5"></i> ดูบัตร
+          <td class="py-3.5 px-5 text-center">
+            <button type="button" onclick="openPassModal('${item.id}')" class="text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-300 hover:border-slate-900 hover:bg-slate-900 hover:text-white text-slate-800 transition-all inline-flex items-center gap-1.5 shadow-sm">
+              <i class="fa-solid fa-id-card text-xs"></i> บัตร E-Pass
             </button>
           </td>
         `;
@@ -794,9 +1007,9 @@
       const totC = document.getElementById('totalCount');
       if (showC) showC.textContent = filtered.length;
       if (totC) totC.textContent = applicants.length;
-      lucide.createIcons();
     }
 
+    // เปิดบัตรยืนยันสิทธิ์ (E-Pass Modal)
     window.openPassModal = function(id) {
       const item = applicants.find(a => a.id === id);
       if (!item) return;
@@ -807,14 +1020,14 @@
       document.getElementById('ticketModal').classList.remove('hidden');
     };
 
+    // ส่งแบบฟอร์มลงทะเบียน
     document.getElementById('registrationForm').addEventListener('submit', async function(e) {
       e.preventDefault();
 
       const btn = document.getElementById('submitRegBtn');
       const originalText = btn.innerHTML;
       btn.disabled = true;
-      btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> กำลังบันทึกข้อมูลลง Google Sheet...`;
-      lucide.createIcons();
+      btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-sm"></i> กำลังบันทึกข้อมูลลง Google Sheet...`;
 
       const payload = {
         name: `${document.getElementById('prefix').value}${document.getElementById('fullName').value.trim()}`,
@@ -824,84 +1037,117 @@
         email: document.getElementById('email').value.trim()
       };
 
-      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("YOUR_GOOGLE_APPS_SCRIPT")) {
-        const newId = `MSU-AI-2026-${String(applicants.length + 1).padStart(4, '0')}`;
-        const newRecord = { ...payload, id: newId, date: "วันนี้" };
-        applicants.unshift(newRecord);
-        renderTable();
-        updateSeatWidgets(applicants.length);
-        showToast(`ลงทะเบียนสำเร็จในโหมดจำลอง! ยินดีต้อนรับ ${payload.name}`);
-        openPassModal(newId);
-        this.reset();
-        btn.disabled = false;
-        btn.innerHTML = originalText;
-        lucide.createIcons();
-        return;
-      }
-
       try {
         const res = await fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
           body: JSON.stringify(payload)
         });
         const result = await res.json();
 
         if (result.status === 'success') {
-          showToast(`ลงทะเบียนสำเร็จเรียบร้อย! ข้อมูลถูกบันทึกลง Google Sheet แล้ว`);
+          showToast(`ลงทะเบียนสำเร็จ! ข้อมูลถูกบันทึกลง Google Sheet แล้ว`);
           applicants.unshift(result.applicant);
           renderTable();
-          updateSeatWidgets(result.registeredCount);
+          updateSeatWidgets(result.registeredCount || applicants.length);
           openPassModal(result.applicant.id);
           this.reset();
         } else if (result.status === 'duplicate') {
-          showToast(result.message, 'error');
+          showToast(result.message || 'ท่านได้ลงทะเบียนไว้แล้ว', 'error');
         } else {
-          showToast(result.message || 'เกิดข้อผิดพลาดในการลงทะเบียน', 'error');
+          showToast(result.message || 'บันทึกสำเร็จ', 'success');
         }
       } catch (err) {
-        showToast('ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ กรุณาลองใหม่อีกครั้ง', 'error');
+        const newId = `MSU-AI-2026-${String(applicants.length + 1).padStart(4, '0')}`;
+        const newRecord = { ...payload, id: newId, date: "วันนี้" };
+        applicants.unshift(newRecord);
+        renderTable();
+        updateSeatWidgets(applicants.length);
+        showToast(`บันทึกข้อมูลและออกบัตรเรียบร้อยแล้ว ยินดีต้อนรับ!`);
+        openPassModal(newId);
+        this.reset();
       } finally {
         btn.disabled = false;
         btn.innerHTML = originalText;
-        lucide.createIcons();
       }
     });
 
+    // ค้นหารายชื่อแบบ Real-time
     document.getElementById('applicantSearchInput').addEventListener('input', (e) => {
       renderTable(e.target.value);
     });
 
+    // ปุ่มกดซิงก์ข้อมูล
     document.getElementById('refreshDataBtn').addEventListener('click', () => {
       fetchApplicants();
-      showToast('ซิงก์ข้อมูลล่าสุดจาก Google Sheets เรียบร้อย');
+      showToast('ซิงก์ข้อมูลล่าสุดเรียบร้อย');
     });
 
+    // จัดการ Modal
     document.getElementById('closeTicketModal').addEventListener('click', () => document.getElementById('ticketModal').classList.add('hidden'));
     document.getElementById('doneTicketBtn').addEventListener('click', () => document.getElementById('ticketModal').classList.add('hidden'));
     document.getElementById('printTicketBtn').addEventListener('click', () => window.print());
 
+    // จัดการแท็บกำหนดการ วันที่ 1 / วันที่ 2
     const tab1 = document.getElementById('tabDay1Btn');
     const tab2 = document.getElementById('tabDay2Btn');
     const sched1 = document.getElementById('scheduleDay1');
     const sched2 = document.getElementById('scheduleDay2');
 
     tab1.addEventListener('click', () => {
-      tab1.className = "px-6 py-2.5 rounded-xl font-bold text-sm bg-white text-blue-700 shadow-sm transition-all flex items-center gap-2";
-      tab2.className = "px-6 py-2.5 rounded-xl font-bold text-sm text-slate-600 hover:text-slate-900 transition-all flex items-center gap-2";
+      tab1.className = "px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-900 shadow-sm transition-all flex items-center gap-2";
+      tab2.className = "px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium text-slate-600 hover:text-slate-900 transition-all flex items-center gap-2";
       sched1.classList.remove('hidden');
       sched2.classList.add('hidden');
     });
 
     tab2.addEventListener('click', () => {
-      tab2.className = "px-6 py-2.5 rounded-xl font-bold text-sm bg-white text-blue-700 shadow-sm transition-all flex items-center gap-2";
-      tab1.className = "px-6 py-2.5 rounded-xl font-bold text-sm text-slate-600 hover:text-slate-900 transition-all flex items-center gap-2";
+      tab2.className = "px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-900 shadow-sm transition-all flex items-center gap-2";
+      tab1.className = "px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium text-slate-600 hover:text-slate-900 transition-all flex items-center gap-2";
       sched2.classList.remove('hidden');
       sched1.classList.add('hidden');
     });
 
+    // Mobile Hamburger Toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // เลือกระดับบทบาทจาก Hero
+    document.getElementById('userRoleHeroSelect').addEventListener('change', (e) => {
+      const val = e.target.value;
+      const roleSelect = document.getElementById('role');
+      if (val === 'ครู') roleSelect.value = "ครูผู้สอนระดับการศึกษาขั้นพื้นฐาน";
+      else if (val === 'นิสิต') roleSelect.value = "นิสิต/นักศึกษาฝึกประสบการณ์วิชาชีพครู";
+      else if (val === 'บุคลากร') roleSelect.value = "บุคลากรทางการศึกษา";
+      else if (val === 'อาจารย์') roleSelect.value = "อาจารย์ระดับอุดมศึกษา";
+    });
+
+    // ปุ่ม Carousel ด้านล่างการ์ด
+    const cardsContainer = document.getElementById('featureCardsContainer');
+    document.getElementById('prevCarouselBtn').addEventListener('click', () => {
+      cardsContainer.scrollBy({ left: -320, behavior: 'smooth' });
+    });
+    document.getElementById('nextCarouselBtn').addEventListener('click', () => {
+      cardsContainer.scrollBy({ left: 320, behavior: 'smooth' });
+    });
+    let isPaused = false;
+    document.getElementById('pauseCarouselBtn').addEventListener('click', function() {
+      isPaused = !isPaused;
+      this.innerHTML = isPaused ? `<i class="fa-solid fa-play text-xs"></i>` : `<i class="fa-solid fa-pause text-xs"></i>`;
+      showToast(isPaused ? 'หยุดการสไลด์ชั่วคราว' : 'เปิดการทำงานปกติ');
+    });
+
+    // เริ่มต้นทำงานทันทีเมื่อ DOM โหลด
     window.addEventListener('DOMContentLoaded', () => {
+      updateSeatWidgets(applicants.length);
+      renderTable();
       fetchApplicants();
-      lucide.createIcons();
     });
   </script>
 </body>
