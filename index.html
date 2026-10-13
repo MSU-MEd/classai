@@ -61,31 +61,20 @@
 </head>
 <body class="bg-slate-50 antialiased selection:bg-blue-600 selection:text-white">
 
-  <!-- Top Announcement Bar -->
-  <aside aria-label="แถบแจ้งเตือนหลักสูตร" class="bg-msu-navy text-white text-xs py-2.5 px-4 border-b border-slate-700/60 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
-      <div class="flex items-center gap-2">
-        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-400/20 text-amber-300 border border-amber-400/40">
-          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse mr-1.5"></span>
-          เปิดรับสมัครรุ่นที่ 1
-        </span>
-        <span class="text-slate-300 font-body">รหัสหลักสูตร 1056799 • มหาวิทยาลัยมหาสารคาม</span>
-      </div>
-      <div class="flex items-center gap-4 text-slate-300">
-        <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-amber-400"></i> อบรม 12 ชั่วโมง (2 วัน)</span>
-        <span class="hidden sm:flex items-center gap-1.5"><i data-lucide="award" class="w-3.5 h-3.5 text-emerald-400"></i> มีวุฒิบัตรรับรอง</span>
-        <span class="text-amber-300 font-semibold">จำกัด 35 คน/รุ่น</span>
-      </div>
-    </div>
-  </aside>
-
-  <!-- Main Navigation Bar -->
-  <header class="bg-white/95 backdrop-blur border-b border-slate-200 sticky top-9 z-40">
+  <!-- Main Navigation Bar (ไม่มีแทบแจ้งเตือนด้านบนแล้ว) -->
+  <header class="bg-white/95 backdrop-blur border-b border-slate-200 sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20">
         <a href="#hero" class="flex items-center gap-3.5 group">
-          <div class="w-11 h-11 rounded-xl bg-msu-navy flex items-center justify-center text-amber-400 font-bold font-sans text-xl shadow-md">
-            MSU
+          <!-- โลโก้มหาวิทยาลัยมหาสารคาม -->
+          <div class="relative">
+            <img 
+              src="https://i.ibb.co/fV5MZbwk/642768993-1941877609748834-2263063250765183521-n-1.jpg" 
+              alt="โลโก้ มหาวิทยาลัยมหาสารคาม" 
+              class="w-12 h-12 rounded-xl object-cover ring-2 ring-blue-700/20 shadow-md group-hover:scale-105 transition-transform duration-300"
+              onerror="this.src='https://placehold.co/100x100/0B192C/F4B41A?text=MSU'"
+            />
+            <div class="absolute -bottom-1 -right-1 bg-amber-400 text-slate-900 text-[10px] font-bold px-1 rounded shadow-sm">AI</div>
           </div>
           <div>
             <div class="text-[11px] font-bold tracking-wider uppercase text-blue-700">MAHASARAKHAM UNIVERSITY</div>
@@ -126,7 +115,7 @@
         <div class="lg:col-span-7 space-y-6">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold">
             <span class="w-2 h-2 rounded-full bg-blue-600"></span>
-            หลักสูตรระยะสั้นเพื่อพัฒนาวิชาชีพครูยุค AI
+            หลักสูตรระยะสั้นเพื่อพัฒนาวิชาชีพครูยุค AI • รหัสหลักสูตร 1056799
           </div>
 
           <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 leading-tight">
@@ -203,7 +192,7 @@
               </div>
               <div class="flex justify-between items-center text-xs text-slate-400 mt-3 font-mono">
                 <span>สมัครแล้ว: <strong class="text-white" id="heroRegisteredCount">--</strong> คน</span>
-                <span class="text-emerald-400 font-medium">เปิดรับสมัครถึง 20 ต.ค. 69</span>
+                <span class="text-emerald-400 font-medium">เปิดรับสมัครจำนวนจำกัด</span>
               </div>
             </div>
 
@@ -236,7 +225,7 @@
     </div>
   </section>
 
-  <!-- 4 Core Curriculum Modules Section (ออกแบบให้อ่านง่าย มีมิติชัดเจน) -->
+  <!-- 4 Core Curriculum Modules Section -->
   <section id="modules" class="py-20 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-14">
@@ -323,7 +312,7 @@
     </div>
   </section>
 
-  <!-- Schedule Section (Clear Day 1 / Day 2 Tabs) -->
+  <!-- Schedule Section -->
   <section id="schedule" class="py-20 bg-slate-100/70 border-b border-slate-200">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-12">
@@ -396,7 +385,7 @@
         </div>
       </div>
 
-      <!-- Day 2 Schedule List (Hidden initially) -->
+      <!-- Day 2 Schedule List -->
       <div id="scheduleDay2" class="space-y-4 hidden">
         <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div class="flex items-start gap-4">
@@ -659,14 +648,12 @@
   <!-- JavaScript: เชื่อมต่อ Google Apps Script Web App -->
   <script>
     /**
-     * -------------------------------------------------------------
      * นำ Web App URL ที่ได้จากการ Deploy ใน Google Apps Script
-     * มาวางแทนที่เครื่องหมายคำพูดในตัวแปร GOOGLE_SCRIPT_URL ด้านล่าง
-     * -------------------------------------------------------------
+     * มาวางแทนที่ข้อความ YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL
      */
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztyfYg6HXrhSmBeRjBad1oQ4hUxgNSVpp6qd51WAZWugdWCLq8ERVHF2pgwwuBpwxkhA/exec";
 
-    // ข้อมูลจำลองสำรองกรณีที่ยังไม่ได้ใส่ Web App URL เพื่อให้ระบบไม่ล่ม
+    // ข้อมูลจำลองสำรองกรณีที่ยังไม่ได้ระบุ Web App URL
     const DEMO_FALLBACK_DATA = [
       { id: "MSU-AI-2026-0001", name: "ครูวิภาดา สุขสมบูรณ์", role: "ครูผู้สอนระดับการศึกษาขั้นพื้นฐาน", school: "โรงเรียนสาธิต มมส.", phone: "081-456-7890", date: "10 ต.ค. 2569" },
       { id: "MSU-AI-2026-0002", name: "ครูกานต์ เกียรติเจริญ", role: "ครูผู้สอนระดับการศึกษาขั้นพื้นฐาน", school: "โรงเรียนมหาสารคามพิทยาคม", phone: "089-123-4567", date: "10 ต.ค. 2569" },
@@ -677,7 +664,6 @@
     let applicants = [];
     const MAX_SEATS = 35;
 
-    // ระบบแจ้งเตือน Toast สวยงาม
     function showToast(message, type = 'success') {
       const container = document.getElementById('toastContainer');
       const toast = document.createElement('div');
@@ -698,36 +684,42 @@
       }, 3500);
     }
 
-    // ฟังก์ชันอัปเดตตัวเลขแสดงผลที่นั่ง
     function updateSeatWidgets(totalRegistered) {
       const remaining = Math.max(0, MAX_SEATS - totalRegistered);
       const percent = Math.min(100, Math.round((totalRegistered / MAX_SEATS) * 100));
 
-      document.getElementById('navApplicantCount').textContent = totalRegistered;
-      document.getElementById('heroRemainingSeats').textContent = remaining;
-      document.getElementById('heroRegisteredCount').textContent = totalRegistered;
-      document.getElementById('heroSeatProgressBar').style.width = `${percent}%`;
+      const navBadge = document.getElementById('navApplicantCount');
+      if (navBadge) navBadge.textContent = totalRegistered;
+      
+      const heroRemain = document.getElementById('heroRemainingSeats');
+      if (heroRemain) heroRemain.textContent = remaining;
+
+      const heroReg = document.getElementById('heroRegisteredCount');
+      if (heroReg) heroReg.textContent = totalRegistered;
+
+      const heroBar = document.getElementById('heroSeatProgressBar');
+      if (heroBar) heroBar.style.width = `${percent}%`;
 
       const submitBtn = document.getElementById('submitRegBtn');
-      if (remaining === 0) {
+      if (remaining === 0 && submitBtn) {
         submitBtn.disabled = true;
         submitBtn.className = "w-full py-3.5 bg-slate-400 text-white font-bold rounded-xl cursor-not-allowed";
         submitBtn.innerHTML = `<span>ที่นั่งเต็มแล้วสำหรับรุ่นนี้ (35/35)</span>`;
       }
     }
 
-    // ฟังก์ชันดึงข้อมูลจาก Google Sheets
     async function fetchApplicants() {
       const loading = document.getElementById('tableLoadingState');
       const badge = document.getElementById('connectionBadge');
-      loading.classList.remove('hidden');
+      if (loading) loading.classList.remove('hidden');
 
       if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("YOUR_GOOGLE_APPS_SCRIPT")) {
-        // Fallback โหมดสาธิต
         applicants = [...DEMO_FALLBACK_DATA];
-        badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-500"></span> โหมดสาธิต (ใส่ URL เพื่อใช้ชีทจริง)`;
-        badge.className = "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200";
-        loading.classList.add('hidden');
+        if (badge) {
+          badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-500"></span> โหมดสาธิต (ใส่ URL เพื่อใช้ชีทจริง)`;
+          badge.className = "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200";
+        }
+        if (loading) loading.classList.add('hidden');
         renderTable();
         updateSeatWidgets(applicants.length);
         return;
@@ -738,28 +730,29 @@
         const data = await response.json();
         if (data.status === 'success') {
           applicants = data.applicants || [];
-          badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span> เชื่อมต่อ Google Sheets แล้ว`;
-          badge.className = "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200";
+          if (badge) {
+            badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span> เชื่อมต่อ Google Sheets แล้ว`;
+            badge.className = "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200";
+          }
           updateSeatWidgets(data.registeredCount);
         } else {
           showToast(data.message || 'ดึงข้อมูลไม่สำเร็จ', 'error');
         }
       } catch (err) {
-        console.warn('Fetch failed, using local fallback', err);
         applicants = [...DEMO_FALLBACK_DATA];
         showToast('ไม่สามารถเชื่อมต่อ Google Sheets ชั่วคราว แสดงข้อมูลสำรอง', 'error');
       } finally {
-        loading.classList.add('hidden');
+        if (loading) loading.classList.add('hidden');
         renderTable();
       }
     }
 
-    // วาดตารางรายชื่อ
     function renderTable(filter = '') {
       const tbody = document.getElementById('applicantTableBody');
       const empty = document.getElementById('tableEmptyState');
-      const q = filter.trim().toLowerCase();
+      if (!tbody) return;
 
+      const q = filter.trim().toLowerCase();
       const filtered = applicants.filter(a => {
         if (!q) return true;
         return a.name.toLowerCase().includes(q) ||
@@ -770,9 +763,9 @@
 
       tbody.innerHTML = '';
       if (filtered.length === 0) {
-        empty.classList.remove('hidden');
+        if (empty) empty.classList.remove('hidden');
       } else {
-        empty.classList.add('hidden');
+        if (empty) empty.classList.add('hidden');
       }
 
       filtered.forEach(item => {
@@ -797,12 +790,13 @@
         tbody.appendChild(tr);
       });
 
-      document.getElementById('showingCount').textContent = filtered.length;
-      document.getElementById('totalCount').textContent = applicants.length;
+      const showC = document.getElementById('showingCount');
+      const totC = document.getElementById('totalCount');
+      if (showC) showC.textContent = filtered.length;
+      if (totC) totC.textContent = applicants.length;
       lucide.createIcons();
     }
 
-    // เปิดบัตรยืนยันตัวตน
     window.openPassModal = function(id) {
       const item = applicants.find(a => a.id === id);
       if (!item) return;
@@ -813,7 +807,6 @@
       document.getElementById('ticketModal').classList.remove('hidden');
     };
 
-    // ส่งฟอร์มลงทะเบียนบันทึกลง Google Sheets
     document.getElementById('registrationForm').addEventListener('submit', async function(e) {
       e.preventDefault();
 
@@ -832,7 +825,6 @@
       };
 
       if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("YOUR_GOOGLE_APPS_SCRIPT")) {
-        // บันทึกแบบจำลองใน Demo Mode
         const newId = `MSU-AI-2026-${String(applicants.length + 1).padStart(4, '0')}`;
         const newRecord = { ...payload, id: newId, date: "วันนี้" };
         applicants.unshift(newRecord);
@@ -875,23 +867,19 @@
       }
     });
 
-    // ปุ่มค้นหา
     document.getElementById('applicantSearchInput').addEventListener('input', (e) => {
       renderTable(e.target.value);
     });
 
-    // ปุ่มรีเฟรชข้อมูล
     document.getElementById('refreshDataBtn').addEventListener('click', () => {
       fetchApplicants();
       showToast('ซิงก์ข้อมูลล่าสุดจาก Google Sheets เรียบร้อย');
     });
 
-    // ปิด Modal
     document.getElementById('closeTicketModal').addEventListener('click', () => document.getElementById('ticketModal').classList.add('hidden'));
     document.getElementById('doneTicketBtn').addEventListener('click', () => document.getElementById('ticketModal').classList.add('hidden'));
     document.getElementById('printTicketBtn').addEventListener('click', () => window.print());
 
-    // สลับแท็บกำหนดการ
     const tab1 = document.getElementById('tabDay1Btn');
     const tab2 = document.getElementById('tabDay2Btn');
     const sched1 = document.getElementById('scheduleDay1');
