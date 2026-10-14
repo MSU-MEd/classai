@@ -959,7 +959,7 @@
         </div>
         <div>
           <h3 class="text-lg font-bold text-slate-900">เข้าสู่ระบบเจ้าหน้าที่ (Admin)</h3>
-          <p class="text-xs text-slate-500 mt-1">กรุณากรอกรหัส PIN (ค่าเริ่มต้น: 2569)</p>
+          <p class="text-xs text-slate-500 mt-1">กรุณากรอกรหัส PIN </p>
         </div>
         <form id="adminPinForm" class="max-w-xs mx-auto space-y-3">
           <input type="password" id="adminPinInput" placeholder="กรอกรหัส PIN" maxlength="10" required class="w-full text-center tracking-widest text-lg font-mono px-4 py-3 rounded-2xl border border-slate-300 focus:border-slate-900 outline-none" />
@@ -1043,8 +1043,8 @@
 
   <!-- ================= 12. JAVASCRIPT LOGIC ================= -->
   <script>
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzXEw_THiObeOPGYslR673qtq-xpdvXjz4Y6-Op-LjIlEkvpnFG_1LiQei2oOPclmkg4w/exec";
-    const LOCAL_ADMIN_PIN = "2569"; // ตั้งค่ารหัสผ่าน PIN 2569 ให้ตรงกับ Apps Script
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbze1aLtuGPcOwKgKA6Qoya7mtqdVlVlaS7syU2kBIy08JdrnG8TyxUmHYDuA77N1XngQQ/exec";
+    const LOCAL_ADMIN_PIN = "admin"; // ตั้งค่ารหัสผ่าน PIN admin ให้ตรงกับ Apps Script
 
     const DEMO_FALLBACK_DATA = [
       { id: "MSU-AI-2026-0001", name: "ครูวิภาดา สุขสมบูรณ์", role: "ครูผู้สอนระดับการศึกษาขั้นพื้นฐาน", school: "โรงเรียนสาธิต มมส.", phone: "0814567890", email: "wiphada@gmail.com", date: "10 ต.ค. 2569", checkInStatus: "ยังไม่มา", checkInTime: "-" },
