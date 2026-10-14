@@ -148,14 +148,14 @@
         <!-- Header Actions: User Portal & Admin Scanner -->
         <div class="flex items-center gap-2 sm:gap-3">
           
-          <!-- ปุ่มเข้าสู่ระบบผู้ใช้ (แก้ไขข้อมูลส่วนตัว) -->
+          <!-- ปุ่มเปิดบัตร E-Pass ส่วนตัว (Login ด้วย เบอร์โทร + Email) -->
           <button id="openUserPortalBtn" type="button" class="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-full text-xs font-semibold bg-blue-50 text-blue-900 border border-blue-200 hover:bg-blue-100 transition-all shadow-sm">
-            <i class="fa-solid fa-user-pen text-blue-700 text-xs"></i>
-            <span class="hidden sm:inline">แก้ไขข้อมูลตนเอง</span>
-            <span class="sm:hidden">ข้อมูลฉัน</span>
+            <i class="fa-solid fa-id-badge text-blue-700 text-xs"></i>
+            <span class="hidden sm:inline">บัตร E-Pass ของฉัน</span>
+            <span class="sm:hidden">บัตรของฉัน</span>
           </button>
 
-          <!-- ปุ่มระบบสแกน QR Code ของ Admin -->
+          <!-- ปุ่มระบบสแกน QR Code ของ Admin หน้างาน -->
           <button id="openAdminPortalBtn" type="button" class="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-full text-xs font-semibold bg-slate-900 text-amber-300 hover:bg-slate-800 transition-all shadow-sm">
             <i class="fa-solid fa-qrcode text-amber-400 text-xs"></i>
             <span>Admin สแกน</span>
@@ -178,7 +178,7 @@
       <a href="#applicants" class="block text-base font-medium text-slate-700 mobile-nav-link">ตรวจสอบรายชื่อผู้สมัคร</a>
       <div class="pt-2 flex flex-col gap-2">
         <button id="mobileOpenUserBtn" class="w-full py-2.5 bg-blue-50 text-blue-900 rounded-xl font-semibold text-xs border border-blue-200 flex items-center justify-center gap-2">
-          <i class="fa-solid fa-user-pen"></i> เข้าสู่ระบบแก้ไขข้อมูลส่วนตัว
+          <i class="fa-solid fa-id-badge"></i> ดูบัตร E-Pass & แก้ไขข้อมูลของฉัน
         </button>
         <button id="mobileOpenAdminBtn" class="w-full py-2.5 bg-slate-900 text-amber-300 rounded-xl font-semibold text-xs flex items-center justify-center gap-2">
           <i class="fa-solid fa-qrcode"></i> แผงควบคุม Admin & สแกนคิวอาร์โค้ด
@@ -223,8 +223,8 @@
           <i class="fa-solid fa-arrow-right text-xs"></i>
         </a>
         <button onclick="triggerUserLoginModal()" class="px-6 py-3 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/25 text-white font-medium text-xs sm:text-sm transition-all flex items-center gap-2">
-          <i class="fa-solid fa-id-badge text-amber-300"></i>
-          <span>ดูบัตร E-Pass / แก้ไขข้อมูล</span>
+          <i class="fa-solid fa-qrcode text-amber-300"></i>
+          <span>ดูบัตร E-Pass / QR ประจำตัวของฉัน</span>
         </button>
       </div>
     </div>
@@ -496,7 +496,7 @@
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">
           ลงทะเบียนเข้าร่วมการอบรม
         </h2>
-        <p class="text-slate-600 text-sm mt-1">บันทึกข้อมูลเข้า Google Sheets แบบ Real-time และรับบัตร E-Pass ทันที</p>
+        <p class="text-slate-600 text-sm mt-1">บันทึกข้อมูลเข้า Google Sheets แบบ Real-time และรับบัตร E-Pass ประจำตัวทันที</p>
       </div>
 
       <div class="bg-white rounded-[32px] p-6 sm:p-10 border border-slate-200 shadow-card-hover">
@@ -522,11 +522,11 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label for="email" class="block text-xs font-bold text-slate-700 uppercase mb-1">อีเมล Gmail * (ใช้เป็นรหัสผ่านเข้าแก้ไข)</label>
+              <label for="email" class="block text-xs font-bold text-slate-700 uppercase mb-1">อีเมล Gmail * (รหัสผ่านดูบัตร E-Pass)</label>
               <input type="email" id="email" placeholder="example@gmail.com" required class="w-full px-4 py-3 rounded-2xl border border-slate-300 focus:border-slate-900 text-sm outline-none" />
             </div>
             <div>
-              <label for="phone" class="block text-xs font-bold text-slate-700 uppercase mb-1">เบอร์โทรศัพท์ * (ใช้เป็นชื่อผู้ใช้เข้าแก้ไข)</label>
+              <label for="phone" class="block text-xs font-bold text-slate-700 uppercase mb-1">เบอร์โทรศัพท์ * (ชื่อผู้ใช้ดูบัตร E-Pass)</label>
               <input type="tel" id="phone" placeholder="08X-XXX-XXXX" required class="w-full px-4 py-3 rounded-2xl border border-slate-300 focus:border-slate-900 text-sm outline-none" />
             </div>
           </div>
@@ -556,7 +556,7 @@
 
           <button type="submit" id="submitRegBtn" class="w-full mt-4 py-4 px-6 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm tracking-wide shadow-md flex items-center justify-center gap-2 group transition-all">
             <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
-            <span>ยืนยันการสมัครและบันทึกข้อมูลลง Google Sheet</span>
+            <span>ยืนยันการสมัครและรับบัตร E-Pass ส่วนตัว</span>
             <i class="fa-solid fa-arrow-right text-xs opacity-70 group-hover:translate-x-1 transition-transform"></i>
           </button>
         </form>
@@ -565,7 +565,7 @@
     </div>
   </section>
 
-  <!-- ================= 7. DIRECTORY TABLE SECTION ================= -->
+  <!-- ================= 7. DIRECTORY TABLE SECTION (รายชื่อสาธารณะ - ซ่อน QR & บัตร) ================= -->
   <section id="applicants" class="py-20 sm:py-28 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -575,7 +575,7 @@
           <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-1">
             รายชื่อผู้ได้รับการยืนยันสิทธิ์
           </h2>
-          <p class="text-slate-500 text-sm mt-1">ข้อมูลสถานะการลงทะเบียนและการเข้างานเชื่อมต่อกับ Google Sheets สด</p>
+          <p class="text-slate-500 text-sm mt-1">ตรวจสอบสถานะการลงทะเบียนและการเข้างาน (บัตร E-Pass และ QR Code เป็นข้อมูลเฉพาะบุคคล)</p>
         </div>
 
         <div class="flex items-center gap-3 w-full md:w-auto">
@@ -584,13 +584,13 @@
             <span>ซิงก์ข้อมูล</span>
           </button>
           <div class="relative flex-1 md:w-72">
-            <input type="text" id="applicantSearchInput" placeholder="ค้นหาชื่อ, รหัส หรือสังกัด..." class="w-full pl-9 pr-4 py-2.5 rounded-full border border-slate-300 focus:border-slate-900 text-xs bg-white outline-none shadow-sm" />
+            <input type="text" id="applicantSearchInput" placeholder="ค้นหาชื่อ หรือสังกัด..." class="w-full pl-9 pr-4 py-2.5 rounded-full border border-slate-300 focus:border-slate-900 text-xs bg-white outline-none shadow-sm" />
             <i class="fa-solid fa-magnifying-glass text-slate-400 text-xs absolute left-3.5 top-3"></i>
           </div>
         </div>
       </div>
 
-      <!-- Table Wrapper -->
+      <!-- Table Wrapper (ไม่มีคอลัมน์กดดูบัตรของคนอื่น) -->
       <div class="bg-white rounded-[28px] border border-slate-200 overflow-hidden shadow-card-soft">
         <div class="overflow-x-auto">
           <table class="w-full text-left text-sm font-body">
@@ -600,7 +600,6 @@
                 <th scope="col" class="py-4 px-5 font-bold">ชื่อ - นามสกุล</th>
                 <th scope="col" class="py-4 px-5 font-bold">โรงเรียน / สังกัด</th>
                 <th scope="col" class="py-4 px-5 font-bold text-center">สถานะเข้างาน</th>
-                <th scope="col" class="py-4 px-5 font-bold text-center">บัตร E-Pass</th>
               </tr>
             </thead>
             <tbody id="applicantTableBody" class="divide-y divide-slate-100 text-slate-700">
@@ -637,12 +636,12 @@
   <footer class="bg-slate-950 text-white py-12 border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-400 space-y-2">
       <div class="font-bold text-white text-base">ระบบจัดการชั้นเรียนดิจิทัลด้วย AI | มหาวิทยาลัยมหาสารคาม</div>
-      <div>คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม ต.ขามเรียง อ.กันทรวิชัย จ.มหาสารคาม 44150</div>
-      <div class="pt-2 text-slate-500 font-mono">© 2026 Mahasarakham University. Open Platform Architecture.</div>
+      <div>คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม ต.ตลาด อ.เมือง จ.มหาสารคาม 44150</div>
+      <div class="pt-2 text-slate-500 font-mono">© 2026 Mahasarakham University. Privacy Protected & PDPA Compliant.</div>
     </div>
   </footer>
 
-  <!-- ================= 9. MODAL: OFFICIAL E-PASS ================= -->
+  <!-- ================= 9. MODAL: OFFICIAL E-PASS (แสดงเฉพาะเจ้าของบัตร) ================= -->
   <div id="ticketModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto hidden">
     <div class="relative w-full max-w-lg my-auto transform transition-all">
       
@@ -688,7 +687,7 @@
         <!-- รายละเอียดผู้เข้าอบรม -->
         <div class="p-5 sm:p-6 bg-slate-50/50 space-y-4">
           <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
-            <div class="text-[10px] uppercase font-mono tracking-wider text-slate-400 font-bold mb-1">ข้อมูลผู้เข้าร่วมอบรม</div>
+            <div class="text-[10px] uppercase font-mono tracking-wider text-slate-400 font-bold mb-1">ข้อมูลผู้เข้าร่วมอบรม (เฉพาะบุคคล)</div>
             <div class="flex items-start justify-between gap-3">
               <div>
                 <div id="ticketName" class="text-base sm:text-lg font-extrabold text-slate-900 leading-snug">ครูกานดา ปัญญาวิเศษ</div>
@@ -733,12 +732,12 @@
         <div class="p-5 sm:p-6 bg-white flex flex-col sm:flex-row items-center justify-between gap-5">
           <div class="text-center sm:text-left space-y-1.5">
             <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 text-[11px] font-bold border border-amber-200 font-mono">
-              <i class="fa-solid fa-qrcode text-amber-600"></i>
-              <span>ENTRANCE QR PASS</span>
+              <i class="fa-solid fa-lock text-amber-600"></i>
+              <span>SECURE PERSONAL QR</span>
             </div>
-            <h4 class="text-sm font-bold text-slate-900">คิวอาร์โค้ดเฉพาะบุคคล</h4>
+            <h4 class="text-sm font-bold text-slate-900">คิวอาร์โค้ดแสดงตนเข้างาน</h4>
             <p class="text-xs text-slate-500 font-body leading-relaxed max-w-[240px]">
-              แสดง QR นี้ต่อเจ้าหน้าที่หน้าห้องอบรมเพื่อสแกนเข้างานและบันทึกเวลา ว PA
+              แสดง QR นี้ต่อเจ้าหน้าที่หน้าห้องอบรมเพื่อสแกนเช็กชื่อเข้างานและยืนยันชั่วโมง ว PA
             </p>
             <div id="ticketCheckInInfo" class="text-xs font-semibold text-emerald-600 pt-1">
               สถานะ: ยังไม่ได้เข้างาน
@@ -752,12 +751,12 @@
               alt="Personal Check-in QR" 
               class="w-32 h-32 object-contain rounded-lg bg-white p-1"
             />
-            <span class="text-[9px] font-mono font-bold tracking-widest text-slate-400 mt-1 uppercase">Scan to Check-In</span>
+            <span class="text-[9px] font-mono font-bold tracking-widest text-slate-400 mt-1 uppercase">Scan for Entrance</span>
           </div>
         </div>
 
         <div class="px-6 py-2.5 bg-slate-100 text-center text-[10px] sm:text-[11px] text-slate-500 font-mono border-t border-slate-200">
-          เกณฑ์การประเมิน: เข้าร่วมไม่น้อยกว่า 80% และผ่านการทดสอบ 75% เพื่อรับวุฒิบัตร
+          โปรดบันทึกภาพหน้าจอหรือพิมพ์เพื่อนำมาแสดงในวันรายงานตัว
         </div>
       </div>
 
@@ -775,7 +774,7 @@
     </div>
   </div>
 
-  <!-- ================= 10. MODAL: USER PORTAL (LOGIN & EDIT PROFILE) ================= -->
+  <!-- ================= 10. MODAL: USER PORTAL (LOGIN & PRIVATE E-PASS) ================= -->
   <div id="userModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto hidden">
     <div class="relative w-full max-w-lg bg-white rounded-[32px] overflow-hidden shadow-2xl border border-slate-200 my-auto">
       
@@ -783,11 +782,11 @@
       <div class="bg-gradient-to-r from-blue-900 via-brand-navy to-slate-900 text-white p-6 flex justify-between items-center">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-amber-300">
-            <i class="fa-solid fa-user-gear text-lg"></i>
+            <i class="fa-solid fa-id-badge text-lg"></i>
           </div>
           <div>
-            <div class="text-[10px] font-mono tracking-widest text-amber-300 font-bold uppercase">USER SELF-SERVICE</div>
-            <div class="text-base font-bold">ระบบบริการตนเองสำหรับผู้สมัคร</div>
+            <div class="text-[10px] font-mono tracking-widest text-amber-300 font-bold uppercase">SECURE USER PORTAL</div>
+            <div class="text-base font-bold">บัตร E-Pass & ข้อมูลส่วนบุคคล</div>
           </div>
         </div>
         <button id="closeUserModal" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
@@ -798,8 +797,8 @@
       <!-- State 1: User Login Box -->
       <div id="userLoginBox" class="p-6 sm:p-8 space-y-5">
         <div class="text-center space-y-1">
-          <h3 class="text-lg font-bold text-slate-900">เข้าสู่ระบบเพื่อแก้ไขข้อมูล</h3>
-          <p class="text-xs text-slate-500">กรอกเบอร์โทรศัพท์และอีเมลที่ท่านใช้ในการลงทะเบียน</p>
+          <h3 class="text-lg font-bold text-slate-900">เข้าสู่ระบบเพื่อเปิดบัตร E-Pass ของท่าน</h3>
+          <p class="text-xs text-slate-500">กรุณากรอกเบอร์โทรศัพท์และอีเมลที่ท่านใช้ลงทะเบียนไว้</p>
         </div>
 
         <form id="userLoginForm" class="space-y-4">
@@ -814,12 +813,12 @@
 
           <button type="submit" id="userLoginBtn" class="w-full py-3.5 bg-blue-900 hover:bg-blue-800 text-white rounded-2xl font-bold text-xs sm:text-sm transition-all shadow-md flex items-center justify-center gap-2">
             <i class="fa-solid fa-right-to-bracket"></i>
-            <span>เข้าสู่ระบบตรวจสอบและแก้ไขข้อมูล</span>
+            <span>ยืนยันตัวตนเพื่อเปิดบัตร E-Pass</span>
           </button>
         </form>
       </div>
 
-      <!-- State 2: User Profile Dashboard (Edit) -->
+      <!-- State 2: User Profile Dashboard (Edit & View Pass) -->
       <div id="userDashboardBox" class="p-6 sm:p-8 space-y-5 hidden">
         <div class="flex items-center justify-between pb-3 border-b border-slate-200">
           <div>
@@ -831,7 +830,25 @@
           </span>
         </div>
 
-        <form id="userEditProfileForm" class="space-y-3.5">
+        <!-- กล่องทางลัดเปิดดู QR Code ประจำตัว -->
+        <div class="p-4 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center font-bold">
+              <i class="fa-solid fa-qrcode text-lg"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-slate-900">คิวอาร์โค้ดเข้างานของท่าน</div>
+              <div class="text-[11px] text-slate-600">กดเพื่อเปิดบัตร E-Pass แบบเต็มจอ</div>
+            </div>
+          </div>
+          <button type="button" id="viewMyPassBtn" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold shadow-sm">
+            เปิดบัตร
+          </button>
+        </div>
+
+        <form id="userEditProfileForm" class="space-y-3.5 pt-1">
+          <div class="text-xs font-bold text-slate-800 uppercase tracking-wider">แก้ไขข้อมูลส่วนตัว</div>
+
           <div>
             <label class="block text-xs font-bold text-slate-700 uppercase mb-1">ชื่อ - นามสกุล *</label>
             <input type="text" id="userEditName" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm outline-none" />
@@ -863,14 +880,10 @@
             <input type="text" id="userEditSchool" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm outline-none" />
           </div>
 
-          <div class="pt-2 flex flex-col sm:flex-row gap-2">
-            <button type="submit" id="saveUserProfileBtn" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1.5">
+          <div class="pt-2">
+            <button type="submit" id="saveUserProfileBtn" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1.5">
               <i class="fa-solid fa-floppy-disk"></i>
               <span>บันทึกการแก้ไขข้อมูล</span>
-            </button>
-            <button type="button" id="viewMyPassBtn" class="py-3 px-4 bg-slate-900 hover:bg-slate-800 text-amber-300 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5">
-              <i class="fa-solid fa-qrcode"></i>
-              <span>ดูบัตร E-Pass</span>
             </button>
           </div>
         </form>
@@ -912,7 +925,7 @@
         </div>
         <div>
           <h3 class="text-lg font-bold text-slate-900">เข้าสู่ระบบเจ้าหน้าที่ (Admin)</h3>
-          <p class="text-xs text-slate-500 mt-1">กรุณากรอกรหัส PIN ประจำจุดลงทะเบียน (ค่าเริ่มต้น: 2569)</p>
+          <p class="text-xs text-slate-500 mt-1">กรุณากรอกรหัส PIN </p>
         </div>
         <form id="adminPinForm" class="max-w-xs mx-auto space-y-3">
           <input type="password" id="adminPinInput" placeholder="กรอกรหัส PIN" maxlength="10" required class="w-full text-center tracking-widest text-lg font-mono px-4 py-3 rounded-2xl border border-slate-300 focus:border-slate-900 outline-none" />
@@ -962,7 +975,7 @@
           <p class="text-[11px] text-slate-400 mt-2 font-mono">ส่องกล้องไปที่ QR Code บนบัตร E-Pass ของผู้เข้าอบรม</p>
         </div>
 
-        <!-- Scan Result Toast / Alert Card -->
+        <!-- Scan Result Card -->
         <div id="scanResultCard" class="hidden p-4 rounded-2xl border transition-all duration-300">
           <div class="flex items-start gap-3">
             <div id="scanResultIcon" class="w-10 h-10 rounded-xl flex items-center justify-center text-lg shrink-0"></div>
@@ -993,16 +1006,14 @@
     </div>
   </div>
 
-  <!-- Toast Alert Notification -->
+  <!-- Toast Container -->
   <div id="toastContainer" class="fixed bottom-6 left-6 z-50 space-y-2 pointer-events-none"></div>
 
   <!-- ================= 12. JAVASCRIPT LOGIC ================= -->
   <script>
-    // URL ของ Google Apps Script ที่ Deploy เป็น Web App
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyxuZpiAlLgEMpMt4oxrwOe_bDx0rheZJUEvHSJgTixsmoXPpzreEhcxErFgRurW3t-uQ/exec";
-    const LOCAL_ADMIN_PIN = "2569";
+    const LOCAL_ADMIN_PIN = "admin";
 
-    // ชุดข้อมูลจำลองเริ่มต้น
     const DEMO_FALLBACK_DATA = [
       { id: "MSU-AI-2026-0001", name: "ครูวิภาดา สุขสมบูรณ์", role: "ครูผู้สอนระดับการศึกษาขั้นพื้นฐาน", school: "โรงเรียนสาธิต มมส.", phone: "0814567890", email: "wiphada@gmail.com", date: "10 ต.ค. 2569", checkInStatus: "ยังไม่มา", checkInTime: "-" },
       { id: "MSU-AI-2026-0002", name: "ครูกานต์ เกียรติเจริญ", role: "ครูผู้สอนระดับการศึกษาขั้นพื้นฐาน", school: "โรงเรียนมหาสารคามพิทยาคม", phone: "0891234567", email: "karn@gmail.com", date: "10 ต.ค. 2569", checkInStatus: "ยังไม่มา", checkInTime: "-" },
@@ -1016,7 +1027,6 @@
     let isScanning = false;
     const MAX_SEATS = 35;
 
-    // ระบบส่งเสียง Beep เวลาสแกนด้วย Web Audio API (ไม่ต้องพึ่งไฟล์ mp3)
     function playBeep(success = true) {
       try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -1098,6 +1108,7 @@
       }
     }
 
+    // ฟังก์ชันเรนเดอร์ตารางสาธารณะ (ตัดปุ่มดู E-Pass ของคนอื่นออก 100%)
     function renderTable(filter = '') {
       const tbody = document.getElementById('applicantTableBody');
       const empty = document.getElementById('tableEmptyState');
@@ -1135,15 +1146,10 @@
           </td>
           <td class="py-3.5 px-5 text-xs text-slate-700">${item.school}</td>
           <td class="py-3.5 px-5 text-center">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${badgeClass}">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold border ${badgeClass}">
               <i class="${iconClass} text-[10px]"></i>
               ${isHere ? `มาแล้ว (${item.checkInTime.split(' ')[3] || ''})` : 'ยังไม่มา'}
             </span>
-          </td>
-          <td class="py-3.5 px-5 text-center">
-            <button type="button" onclick="openPassModal('${item.id}')" class="text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-300 hover:border-slate-900 hover:bg-slate-900 hover:text-white text-slate-800 transition-all inline-flex items-center gap-1.5 shadow-sm">
-              <i class="fa-solid fa-qrcode text-xs"></i> บัตร E-Pass
-            </button>
           </td>
         `;
         tbody.appendChild(tr);
@@ -1152,7 +1158,7 @@
       document.getElementById('showingCount').textContent = filtered.length;
     }
 
-    // ฟังก์ชันเปิดบัตร E-Pass เฉพาะบุคคล พร้อม QR Code สำหรับสแกนเข้างาน
+    // ฟังก์ชันเปิดบัตร E-Pass เฉพาะบุคคล (จะถูกเรียกเมื่อเจ้าของกรอกรหัสผ่าน หรือสมัครสำเร็จใหม่ๆ)
     window.openPassModal = function(id) {
       const item = applicants.find(a => a.id === id);
       if (!item) return;
@@ -1213,17 +1219,17 @@
         const result = await res.json();
 
         if (result.status === 'success') {
-          showToast('ลงทะเบียนสำเร็จ! ข้อมูลถูกบันทึกลงระบบแล้ว');
+          showToast('ลงทะเบียนสำเร็จ! ออกบัตร E-Pass ประจำตัวเรียบร้อย');
           applicants.unshift(result.applicant);
           renderTable();
           updateSeatWidgets(result.registeredCount || applicants.length);
+          // แสดงบัตรเฉพาะผู้ที่พึ่งสมัครเสร็จ
           openPassModal(result.applicant.id);
           this.reset();
         } else {
           showToast(result.message || 'เกิดข้อผิดพลาดในการสมัคร', 'error');
         }
       } catch (err) {
-        // ออฟไลน์ Fallback
         const newId = `MSU-AI-2026-${String(applicants.length + 1).padStart(4, '0')}`;
         const newRecord = { ...payload, id: newId, date: "วันนี้", checkInStatus: "ยังไม่มา", checkInTime: "-" };
         applicants.unshift(newRecord);
@@ -1239,7 +1245,7 @@
     });
 
     // -----------------------------------------------------------------
-    // ระบบผู้ใช้ (User Self-Service: Login & Edit Profile)
+    // ระบบผู้ใช้ (User Self-Service: Login ด้วยเบอร์โทร + อีเมล เพื่อดูบัตรตนเอง)
     // -----------------------------------------------------------------
     window.triggerUserLoginModal = function() {
       document.getElementById('userModal').classList.remove('hidden');
@@ -1269,7 +1275,7 @@
       const btn = document.getElementById('userLoginBtn');
 
       btn.disabled = true;
-      btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> กำลังตรวจสอบ...`;
+      btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> กำลังตรวจสอบสิทธิ์...`;
 
       try {
         const res = await fetch(GOOGLE_SCRIPT_URL, {
@@ -1292,14 +1298,14 @@
             showUserDashboard(loggedInUser);
             showToast(`ยินดีต้อนรับคุณ ${loggedInUser.name}`);
           } else {
-            showToast('เบอร์โทรศัพท์หรืออีเมลไม่ถูกต้อง', 'error');
+            showToast('เบอร์โทรศัพท์หรืออีเมลไม่ถูกต้อง กรุณาตรวจสอบข้อมูล', 'error');
           }
         }
       } catch (err) {
         showToast('ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ในขณะนี้', 'error');
       } finally {
         btn.disabled = false;
-        btn.innerHTML = `<i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบตรวจสอบและแก้ไขข้อมูล`;
+        btn.innerHTML = `<i class="fa-solid fa-right-to-bracket"></i> ยืนยันตัวตนเพื่อเปิดบัตร E-Pass`;
       }
     });
 
@@ -1362,7 +1368,7 @@
           showToast(result.message || 'บันทึกไม่สำเร็จ', 'error');
         }
       } catch (err) {
-        showToast('อัปเดตข้อมูลในเครื่องเรียบร้อย (Offline Mode)');
+        showToast('อัปเดตข้อมูลเรียบร้อย (Offline Mode)');
         loggedInUser = { ...loggedInUser, ...updated };
         const idx = applicants.findIndex(a => a.id === loggedInUser.id);
         if (idx !== -1) applicants[idx] = { ...applicants[idx], ...updated };
@@ -1415,10 +1421,8 @@
       }
     });
 
-    // ฟังก์ชันจัดการกล้อง QR Code Scanner
     async function startCameraScanner() {
       if (isScanning) return;
-      const readerElem = document.getElementById('qr-reader');
       html5QrCode = new Html5Qrcode("qr-reader");
 
       try {
@@ -1449,29 +1453,23 @@
     document.getElementById('startScanBtn').addEventListener('click', startCameraScanner);
     document.getElementById('stopScanBtn').addEventListener('click', stopCameraScanner);
 
-    function onScanFailure(error) {
-      // ข้าม error ระหว่างค้นหาเฟรม
-    }
+    function onScanFailure(error) {}
 
-    // เมื่อกล้องสแกนพบ QR Code
     let lastScannedId = "";
     let lastScanTime = 0;
 
     async function onScanSuccess(decodedText) {
       const now = Date.now();
-      // ป้องกันการสแกนซ้ำถี่เกินไปภายใน 3 วินาที
       if (decodedText === lastScannedId && (now - lastScanTime) < 3000) return;
       lastScannedId = decodedText;
       lastScanTime = now;
 
-      // สกัดรหัสผู้สมัครจาก QR Code (เช่น MSU-AI-2026-0001)
       const match = decodedText.match(/MSU-AI-2026-\d+/i);
       const applicantId = match ? match[0].toUpperCase() : decodedText.trim().toUpperCase();
 
       await executeCheckIn(applicantId);
     }
 
-    // ฟังก์ชันสั่งเช็กอินไปยัง Google Apps Script
     async function executeCheckIn(applicantId) {
       const resultCard = document.getElementById('scanResultCard');
       const icon = document.getElementById('scanResultIcon');
@@ -1500,7 +1498,6 @@
           details.textContent = `${data.attendee.school} (${data.attendee.role})`;
           timeBox.textContent = `เวลาเข้างาน: ${data.checkInTime}`;
 
-          // อัปเดตข้อมูลตาราง
           const target = applicants.find(a => a.id.toUpperCase() === applicantId);
           if (target) {
             target.checkInStatus = 'เช็กอินแล้ว';
@@ -1527,7 +1524,6 @@
           timeBox.textContent = "";
         }
       } catch (err) {
-        // อัปเดตแบบ Local Offline กรณีเน็ตขัดข้อง
         const target = applicants.find(a => a.id.toUpperCase() === applicantId);
         if (target) {
           playBeep(true);
@@ -1548,7 +1544,6 @@
       }
     }
 
-    // วาดรายการสำหรับกดเช็กอินด้วยตนเองใน Admin Modal
     function renderAdminAttendeeList(filter = '') {
       const container = document.getElementById('adminAttendeeList');
       if (!container) return;
