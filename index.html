@@ -65,12 +65,42 @@
     .card-transition {
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    
+    /* รอยหยักตั๋ว E-Pass ซ้าย-ขวา */
+    .ticket-notch-left {
+      position: absolute;
+      left: -14px;
+      top: -14px;
+      width: 28px;
+      height: 28px;
+      border-radius: 9999px;
+      background-color: #070F1E;
+    }
+    .ticket-notch-right {
+      position: absolute;
+      right: -14px;
+      top: -14px;
+      width: 28px;
+      height: 28px;
+      border-radius: 9999px;
+      background-color: #070F1E;
+    }
+
     @media print {
-      body * { visibility: hidden; }
-      #printableTicket, #printableTicket * { visibility: visible; }
+      body * { visibility: hidden !important; }
+      #printableTicket, #printableTicket * { visibility: visible !important; }
       #printableTicket {
-        position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 24px;
-        background: white !important; box-shadow: none !important;
+        position: fixed !important;
+        left: 50% !important;
+        top: 40px !important;
+        transform: translateX(-50%) !important;
+        width: 500px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 28px !important;
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        background: white !important;
       }
       .no-print { display: none !important; }
     }
@@ -159,13 +189,11 @@
     <!-- Center Headline Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-16 sm:pt-28 pb-8 flex flex-col items-center text-center">
       
-      <!-- Pill Badge: แสดงผลบรรทัดเดียวพอดีจอมือถือ ไม่ตัดคำ -->
       <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10.5px] sm:text-xs font-medium mb-6 shadow-sm whitespace-nowrap">
         <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400 animate-pulse shrink-0"></span>
         <span>หลักสูตรระยะสั้นพัฒนาวิชาชีพครูยุคดิจิทัล • รหัสหลักสูตร 1056799</span>
       </div>
 
-      <!-- Main Heading -->
       <div class="space-y-1">
         <p class="text-2xl sm:text-4xl md:text-5xl font-light text-slate-200 tracking-tight">
           เพราะเราเชื่อใน
@@ -383,7 +411,7 @@
           <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2">
             เนื้อหาการฝึกอบรม
           </h2>
-          <p class="text-slate-600 text-sm sm:text-base mt-1">การลงมือสร้างสรรค์และแก้ปัญหาจริง 4 ขั้นตอนตั้งแต่ฐานข้อมูลจนถึงขึ้นเว็บจริง</p>
+          <p class="text-slate-600 text-sm sm:base mt-1">การลงมือสร้างสรรค์และแก้ปัญหาจริง 4 ขั้นตอนตั้งแต่ฐานข้อมูลจนถึงขึ้นเว็บจริง</p>
         </div>
         <a href="#schedule" class="self-start sm:self-auto px-6 py-2.5 rounded-full border border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white text-xs font-semibold transition-all flex items-center gap-2 shadow-sm">
           <span>ดูกำหนดการอบรม</span>
@@ -493,7 +521,7 @@
     </div>
   </section>
 
-  <!-- ================= 5. TIMETABLE SCHEDULE SECTION (ตกแต่งใหม่แบบ Modern Timeline) ================= -->
+  <!-- ================= 5. TIMETABLE SCHEDULE SECTION ================= -->
   <section id="schedule" class="py-20 sm:py-28 bg-white border-b border-slate-200">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -509,7 +537,7 @@
           หลักสูตรเข้มข้น 12 ชั่วโมง เวลา 09.00 - 16.30 น. เน้นปฏิบัติจริงทุกขั้นตอน
         </p>
 
-        <!-- Switcher Tabs สไตล์โมเดิร์น -->
+        <!-- Switcher Tabs -->
         <div class="mt-8 inline-flex p-1.5 bg-slate-100/90 backdrop-blur rounded-2xl border border-slate-200 shadow-inner max-w-full overflow-x-auto">
           <button id="tabDay1Btn" type="button" class="px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-950 shadow-sm transition-all duration-300 flex items-center gap-2 whitespace-nowrap">
             <span class="w-2 h-2 rounded-full bg-blue-600"></span>
@@ -525,7 +553,6 @@
       <!-- Schedule Content: Day 1 -->
       <div id="scheduleDay1" class="relative pl-6 sm:pl-8 border-l-2 border-slate-200 space-y-6 sm:space-y-8 ml-3 sm:ml-4">
         
-        <!-- Day 1 - Item 1 -->
         <div class="relative group">
           <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs shadow-md ring-4 ring-white">
             <i class="fa-solid fa-database text-[11px]"></i>
@@ -551,7 +578,6 @@
           </div>
         </div>
 
-        <!-- Day 1 - Item 2 -->
         <div class="relative group">
           <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-xs shadow-md ring-4 ring-white">
             <i class="fa-solid fa-wand-magic-sparkles text-[11px]"></i>
@@ -577,7 +603,6 @@
           </div>
         </div>
 
-        <!-- Day 1 - Lunch Intermission -->
         <div class="relative">
           <div class="absolute -left-[27px] sm:-left-[35px] top-2.5 w-5 h-5 rounded-full bg-slate-300 text-slate-600 flex items-center justify-center text-[10px] ring-4 ring-white">
             <i class="fa-solid fa-utensils"></i>
@@ -591,7 +616,6 @@
           </div>
         </div>
 
-        <!-- Day 1 - Item 3 -->
         <div class="relative group">
           <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs shadow-md ring-4 ring-white">
             <i class="fa-solid fa-bolt text-[11px]"></i>
@@ -622,7 +646,6 @@
       <!-- Schedule Content: Day 2 -->
       <div id="scheduleDay2" class="relative pl-6 sm:pl-8 border-l-2 border-slate-200 space-y-6 sm:space-y-8 ml-3 sm:ml-4 hidden">
         
-        <!-- Day 2 - Item 1 -->
         <div class="relative group">
           <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs shadow-md ring-4 ring-white">
             <i class="fa-solid fa-code text-[11px]"></i>
@@ -648,7 +671,6 @@
           </div>
         </div>
 
-        <!-- Day 2 - Lunch Intermission -->
         <div class="relative">
           <div class="absolute -left-[27px] sm:-left-[35px] top-2.5 w-5 h-5 rounded-full bg-slate-300 text-slate-600 flex items-center justify-center text-[10px] ring-4 ring-white">
             <i class="fa-solid fa-utensils"></i>
@@ -662,7 +684,6 @@
           </div>
         </div>
 
-        <!-- Day 2 - Item 2 -->
         <div class="relative group">
           <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-rose-600 text-white flex items-center justify-center text-xs shadow-md ring-4 ring-white">
             <i class="fa-solid fa-shield-halved text-[11px]"></i>
@@ -688,7 +709,6 @@
           </div>
         </div>
 
-        <!-- Day 2 - Item 3 -->
         <div class="relative group">
           <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-brand-gold text-slate-950 flex items-center justify-center text-xs shadow-md ring-4 ring-white">
             <i class="fa-solid fa-award text-[12px]"></i>
@@ -719,7 +739,7 @@
     </div>
   </section>
 
-  <!-- ================= 6. REGISTRATION FORM (ปุ่มยืนยันปรับแก้ให้สมดุลบนจอมือถือ) ================= -->
+  <!-- ================= 6. REGISTRATION FORM ================= -->
   <section id="register" class="py-20 sm:py-28 bg-slate-50 border-b border-slate-200">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -787,7 +807,6 @@
             </label>
           </div>
 
-          <!-- ปุ่มกดยืนยันที่ปรับแก้: สวยงาม ไม่ตัดคำบนมือถือ พร้อมไอคอนที่ชัดเจน -->
           <button type="submit" id="submitRegBtn" class="w-full mt-4 py-3.5 sm:py-4 px-4 sm:px-6 rounded-2xl sm:rounded-full bg-slate-900 hover:bg-slate-800 active:scale-[0.99] text-white font-bold text-xs sm:text-sm tracking-wide shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 group">
             <i class="fa-solid fa-circle-check text-emerald-400 text-xs sm:text-sm"></i>
             <span>ยืนยันการสมัครและบันทึกข้อมูลลง Google Sheet</span>
@@ -894,70 +913,153 @@
     <i class="fa-solid fa-comment-dots text-xl"></i>
   </a>
 
-  <!-- ================= 10. MODAL: OFFICIAL E-PASS ================= -->
-  <div id="ticketModal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-[32px] max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all">
+  <!-- ================= 10. MODAL: OFFICIAL E-PASS (REDESIGNED) ================= -->
+  <div id="ticketModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto hidden">
+    <div class="relative w-full max-w-lg my-auto transform transition-all">
       
-      <div class="bg-slate-950 text-white p-6 flex justify-between items-center">
-        <div>
-          <div class="text-[11px] font-bold text-amber-400 uppercase tracking-widest font-mono">OFFICIAL PASS</div>
-          <div class="text-base font-bold">บัตรยืนยันการลงทะเบียนอบรม</div>
+      <!-- ปุ่มปิดมุมบนขวา -->
+      <button id="closeTicketModal" type="button" class="absolute -top-12 right-0 sm:-right-4 w-10 h-10 rounded-full bg-white/20 hover:bg-white text-white hover:text-slate-950 flex items-center justify-center transition-all z-10 shadow-lg no-print">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <!-- บัตร E-Pass สำหรับพิมพ์และแสดงผล (#printableTicket) -->
+      <div id="printableTicket" class="bg-white rounded-[28px] sm:rounded-[32px] overflow-hidden shadow-2xl border border-slate-200/80 text-slate-900 font-sans">
+        
+        <!-- ส่วนหัวบัตร: อัตลักษณ์มหาวิทยาลัย & กรมท่าลึก -->
+        <div class="bg-gradient-to-r from-brand-navyDeep via-brand-navy to-slate-900 text-white p-5 sm:p-6 relative overflow-hidden">
+          <div class="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-amber-400/10 blur-2xl pointer-events-none"></div>
+          <div class="absolute -left-8 -bottom-8 w-32 h-32 rounded-full bg-rose-500/10 blur-2xl pointer-events-none"></div>
+
+          <div class="flex items-center justify-between gap-3 relative z-10">
+            <div class="flex items-center gap-3">
+              <img 
+                src="https://i.ibb.co/fV5MZbwk/642768993-1941877609748834-2263063250765183521-n-1.jpg" 
+                alt="MSU" 
+                class="w-10 h-10 rounded-xl bg-white p-0.5 object-contain shadow-sm shrink-0"
+                onerror="this.src='https://placehold.co/80x80/0B192C/F4B41A?text=MSU'"
+              />
+              <div>
+                <div class="text-[10px] font-mono tracking-widest text-amber-300 font-bold uppercase">MAHASARAKHAM UNIVERSITY</div>
+                <div class="text-sm sm:text-base font-bold leading-tight">บัตรประจำตัวผู้เข้ารับการอบรม (E-Pass)</div>
+              </div>
+            </div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 font-mono shrink-0">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              CONFIRMED
+            </span>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-xs">
+            <div>
+              <div class="text-[10px] text-slate-400 font-mono uppercase">Course ID</div>
+              <div class="font-bold text-white font-mono">MSU-CS-1056799</div>
+            </div>
+            <div class="text-right">
+              <div class="text-[10px] text-slate-400 font-mono uppercase">Ticket Pass No.</div>
+              <div id="ticketId" class="font-extrabold text-amber-300 font-mono text-sm sm:text-base tracking-wide">MSU-AI-2026-0001</div>
+            </div>
+          </div>
         </div>
-        <button id="closeTicketModal" type="button" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
-          <i class="fa-solid fa-xmark text-sm"></i>
-        </button>
+
+        <!-- ส่วนกลางบัตร: ข้อมูลผู้สมัคร & กำหนดการ -->
+        <div class="p-5 sm:p-6 bg-slate-50/50 space-y-4">
+          
+          <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+            <div class="text-[10px] uppercase font-mono tracking-wider text-slate-400 font-bold mb-1">ข้อมูลผู้เข้าร่วมอบรม</div>
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <div id="ticketName" class="text-base sm:text-lg font-extrabold text-slate-900 leading-snug">ครูกานดา ปัญญาวิเศษ</div>
+                <div id="ticketRole" class="text-xs text-blue-700 font-medium mt-0.5">ครูผู้สอนระดับการศึกษาขั้นพื้นฐาน</div>
+              </div>
+              <div class="text-right shrink-0">
+                <span class="text-[11px] font-mono text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200" id="ticketPhone">08X-XXX-XXXX</span>
+              </div>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-600">
+              <i class="fa-solid fa-school text-slate-400 text-xs shrink-0"></i>
+              <span id="ticketSchool" class="font-medium truncate">โรงเรียนสาธิตมหาวิทยาลัยมหาสารคาม</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 text-xs">
+            <div class="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-sm">
+              <div class="text-slate-400 font-mono text-[10px] uppercase font-bold flex items-center gap-1.5 mb-1">
+                <i class="fa-regular fa-calendar-days text-amber-500"></i> วันที่จัดอบรม
+              </div>
+              <div class="font-bold text-slate-900">24 - 25 ต.ค. 2569</div>
+              <div class="text-[11px] text-slate-500 font-mono">09.00 - 16.30 น. (12 ชม.)</div>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-sm">
+              <div class="text-slate-400 font-mono text-[10px] uppercase font-bold flex items-center gap-1.5 mb-1">
+                <i class="fa-solid fa-location-dot text-rose-500"></i> สถานที่อบรม
+              </div>
+              <div class="font-bold text-slate-900 leading-tight">คณะศึกษาศาสตร์</div>
+              <div class="text-[11px] text-slate-500">ม.มหาสารคาม (ม.ใหม่)</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- รอยบากคูปอง & เส้นปรุ -->
+        <div class="relative bg-white h-0 border-t-2 border-dashed border-slate-300">
+          <div class="ticket-notch-left"></div>
+          <div class="ticket-notch-right"></div>
+        </div>
+
+        <!-- ส่วนล่างบัตร: QR Code Check-in -->
+        <div class="p-5 sm:p-6 bg-white flex flex-col sm:flex-row items-center justify-between gap-5">
+          <div class="text-center sm:text-left space-y-1.5">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 text-[11px] font-bold border border-amber-200/80 font-mono">
+              <i class="fa-solid fa-qrcode text-amber-600"></i>
+              <span>CHECK-IN GATEWAY</span>
+            </div>
+            <h4 class="text-sm font-bold text-slate-900">คิวอาร์โค้ดแสดงตนเข้างาน</h4>
+            <p class="text-xs text-slate-500 font-body leading-relaxed max-w-[240px]">
+              แสดงต่อเจ้าหน้าที่จุดลงทะเบียน หรือเปิดผ่านสมาร์ตโฟนเพื่อยืนยันสิทธิ์สะสมชั่วโมง ว PA
+            </p>
+            <div class="text-[10px] font-mono text-slate-400 pt-1">
+              VERIFIED SECURE TOKEN • 2026
+            </div>
+          </div>
+
+          <div class="relative flex flex-col items-center justify-center p-2.5 bg-slate-50 rounded-2xl border-2 border-slate-200/80 shadow-inner shrink-0">
+            <img 
+              id="ticketQrCode" 
+              src="" 
+              alt="Check-in QR Code" 
+              class="w-32 h-32 object-contain rounded-lg bg-white p-1"
+            />
+            <span class="text-[9px] font-mono font-bold tracking-widest text-slate-400 mt-1 uppercase">Scan for Entrance</span>
+          </div>
+        </div>
+
+        <div class="px-6 py-2.5 bg-slate-100 text-center text-[10px] sm:text-[11px] text-slate-500 font-mono border-t border-slate-200">
+          เกณฑ์การประเมิน: เข้าร่วมไม่น้อยกว่า 80% และผ่านการทดสอบ 75% เพื่อรับวุฒิบัตร
+        </div>
+
       </div>
 
-      <div id="printableTicket" class="p-6 space-y-4">
-        <div class="flex justify-between items-center border-b border-slate-100 pb-4">
-          <div>
-            <div class="text-[11px] text-slate-400 font-mono">รหัสผู้สมัครประจำตัว</div>
-            <div id="ticketId" class="text-xl font-extrabold font-mono text-slate-900">MSU-AI-2026-0001</div>
-          </div>
-          <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
-            ยืนยันสิทธิ์แล้ว
-          </span>
-        </div>
-
-        <div class="space-y-3 text-sm">
-          <div>
-            <span class="text-xs text-slate-400">ชื่อ - สกุลผู้สมัคร:</span>
-            <div id="ticketName" class="font-bold text-slate-900 text-base">ครูกานดา ปัญญาวิเศษ</div>
-          </div>
-          <div>
-            <span class="text-xs text-slate-400">หน่วยงาน / โรงเรียน:</span>
-            <div id="ticketSchool" class="font-medium text-slate-700">โรงเรียนสาธิตมหาวิทยาลัยมหาสารคาม</div>
-          </div>
-          <div>
-            <span class="text-xs text-slate-400">หลักสูตร:</span>
-            <div class="font-medium text-slate-700">การพัฒนาระบบจัดการชั้นเรียนดิจิทัลด้วย AI (12 ชม.)</div>
-          </div>
-        </div>
-
-        <div class="p-4 bg-slate-50 rounded-2xl text-center text-xs text-slate-500 font-mono border border-slate-100">
-          โปรดบันทึกภาพหน้าจอหรือพิมพ์เอกสารนี้เพื่อนำมาแสดงในวันรายงานตัว
-        </div>
-      </div>
-
-      <div class="bg-slate-50 p-4 border-t border-slate-200 flex justify-end gap-2 no-print">
-        <button id="printTicketBtn" type="button" class="px-5 py-2.5 bg-slate-900 text-white rounded-full text-xs font-semibold hover:bg-slate-800 flex items-center gap-2 transition-colors shadow-sm">
-          <i class="fa-solid fa-print text-xs"></i>
-          <span>พิมพ์ / บันทึก PDF</span>
+      <!-- Action Buttons ใต้ Modal -->
+      <div class="mt-4 flex items-center justify-end gap-3 no-print">
+        <button id="printTicketBtn" type="button" class="px-5 py-2.5 bg-white hover:bg-slate-100 text-slate-900 rounded-full text-xs font-bold transition-all shadow-md flex items-center gap-2">
+          <i class="fa-solid fa-print text-sm text-slate-700"></i>
+          <span>พิมพ์บัตร / บันทึก PDF</span>
         </button>
-        <button id="doneTicketBtn" type="button" class="px-5 py-2.5 rounded-full border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-100 transition-colors">
-          ปิด
+        <button id="doneTicketBtn" type="button" class="px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-full text-xs font-bold transition-all shadow-md">
+          เสร็จสิ้น
         </button>
       </div>
 
     </div>
   </div>
 
-  <!-- Toast Notification Container -->
+  <!-- Toast Container -->
   <div id="toastContainer" class="fixed bottom-6 left-6 z-50 space-y-2 pointer-events-none"></div>
 
   <!-- ================= 11. JAVASCRIPT LOGIC ================= -->
   <script>
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztyfYg6HXrhSmBeRjBad1oQ4hUxgNSVpp6qd51WAZWugdWCLq8ERVHF2pgwwuBpwxkhA/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwa3vVwdZ_4rzzCWFU2EWcFauZrgSZYvlFlxMkk88zM27CmijmsDGySUBMBWX1O6JXqhA/exec";
 
     const DEMO_FALLBACK_DATA = [
       { id: "MSU-AI-2026-0001", name: "ครูวิภาดา สุขสมบูรณ์", role: "ครูผู้สอนระดับการศึกษาขั้นพื้นฐาน", school: "โรงเรียนสาธิต มมส.", phone: "081-456-7890", date: "10 ต.ค. 2569" },
@@ -1103,9 +1205,19 @@
       const item = applicants.find(a => a.id === id);
       if (!item) return;
 
-      document.getElementById('ticketId').textContent = item.id;
-      document.getElementById('ticketName').textContent = item.name;
-      document.getElementById('ticketSchool').textContent = item.school;
+      document.getElementById('ticketId').textContent = item.id || 'MSU-AI-2026';
+      document.getElementById('ticketName').textContent = item.name || '-';
+      document.getElementById('ticketRole').textContent = item.role || 'ผู้เข้าร่วมอบรม';
+      document.getElementById('ticketSchool').textContent = item.school || 'มหาวิทยาลัยมหาสารคาม';
+      document.getElementById('ticketPhone').textContent = item.phone ? item.phone : 'ยืนยันสิทธิ์แล้ว';
+
+      // สร้าง Dynamic QR Code สำหรับสแกนเช็กชื่อหน้าห้องอบรม
+      const qrPayload = `MSU-CHECKIN:${item.id}|NAME:${encodeURIComponent(item.name)}|STATUS:VALID`;
+      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=0&color=0B192C&data=${encodeURIComponent(qrPayload)}`;
+      
+      const qrImg = document.getElementById('ticketQrCode');
+      qrImg.src = qrUrl;
+
       document.getElementById('ticketModal').classList.remove('hidden');
     };
 
@@ -1148,6 +1260,7 @@
           showToast(result.message || 'บันทึกสำเร็จ', 'success');
         }
       } catch (err) {
+        // Fallback กรณีออฟไลน์หรือติด CORS ของ GAS
         const newId = `MSU-AI-2026-${String(applicants.length + 1).padStart(4, '0')}`;
         const newRecord = { ...payload, id: newId, date: "วันนี้" };
         applicants.unshift(newRecord);
@@ -1175,7 +1288,7 @@
     document.getElementById('doneTicketBtn').addEventListener('click', () => document.getElementById('ticketModal').classList.add('hidden'));
     document.getElementById('printTicketBtn').addEventListener('click', () => window.print());
 
-    // Switcher Logic สำหรับตารางเวลา 2 วัน
+    // Switcher Logic ตารางเวลา 2 วัน
     const tab1 = document.getElementById('tabDay1Btn');
     const tab2 = document.getElementById('tabDay2Btn');
     const sched1 = document.getElementById('scheduleDay1');
@@ -1203,6 +1316,7 @@
       sched1.classList.add('hidden');
     });
 
+    // Mobile Drawer Navigation
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
@@ -1210,6 +1324,7 @@
       link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
     });
 
+    // Persona Selector Trigger
     document.getElementById('userRoleHeroSelect').addEventListener('change', (e) => {
       const val = e.target.value;
       const roleSelect = document.getElementById('role');
@@ -1219,6 +1334,7 @@
       else if (val === 'อาจารย์') roleSelect.value = "อาจารย์ระดับอุดมศึกษา";
     });
 
+    // Carousel Navigation
     const cardsContainer = document.getElementById('featureCardsContainer');
     document.getElementById('prevCarouselBtn').addEventListener('click', () => {
       cardsContainer.scrollBy({ left: -320, behavior: 'smooth' });
