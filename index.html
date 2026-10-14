@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>การพัฒนาระบบจัดการชั้นเรียนดิจิทัลด้วย AI | มหาวิทยาลัยมหาสารคาม</title>
+  <title>การพัฒนาระบบจัดการชั้นเรียนดิจิทัลด้วย AI | สาขาวิชาคณิตศาสตร์ มหาวิทยาลัยมหาสารคาม</title>
   
   <!-- Google Fonts: Prompt, Sarabun, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -116,7 +116,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20">
         
-        <!-- โลโก้ มมส. -->
+        <!-- โลโก้ มมส. และ สาขาวิชาคณิตศาสตร์ -->
         <a href="#hero" class="flex items-center gap-3.5 group">
           <div class="h-12 flex items-center justify-center">
             <img 
@@ -127,7 +127,7 @@
             />
           </div>
           <div class="border-l border-slate-200 pl-3 hidden min-[420px]:block">
-            <div class="text-[10px] sm:text-[11px] font-bold tracking-widest uppercase text-slate-500 font-mono">MAHASARAKHAM UNIVERSITY</div>
+            <div class="text-[10px] sm:text-[11px] font-bold tracking-widest uppercase text-slate-500 font-mono">สาขาวิชาคณิตศาสตร์ มหาวิทยาลัยมหาสารคาม</div>
             <div class="text-sm sm:text-base font-bold text-slate-900 leading-tight group-hover:text-blue-900 transition-colors">
               หลักสูตรชั้นเรียนดิจิทัลด้วย AI
             </div>
@@ -138,7 +138,7 @@
         <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium text-slate-700">
           <a href="#about" class="hover:text-slate-950 transition-colors">เกี่ยวกับหลักสูตร</a>
           <a href="#modules" class="hover:text-slate-950 transition-colors">เนื้อหาอบรม</a>
-          <a href="#schedule" class="hover:text-slate-950 transition-colors">ตารางเวลา</a>
+          <a href="#schedule" class="hover:text-slate-950 transition-colors">กำหนดการอบรม</a>
           <a href="#applicants" class="hover:text-slate-950 transition-colors flex items-center gap-2">
             <span>ตรวจสอบรายชื่อ</span>
             <span id="navApplicantCount" class="bg-slate-100 text-slate-800 text-xs px-2.5 py-0.5 rounded-full font-mono font-bold">4</span>
@@ -147,15 +147,12 @@
 
         <!-- Header Actions: User Portal & Admin Scanner -->
         <div class="flex items-center gap-2 sm:gap-3">
-          
-          <!-- ปุ่มเปิดบัตร E-Pass ส่วนตัว (Login ด้วย เบอร์โทร + Email) -->
           <button id="openUserPortalBtn" type="button" class="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-full text-xs font-semibold bg-blue-50 text-blue-900 border border-blue-200 hover:bg-blue-100 transition-all shadow-sm">
             <i class="fa-solid fa-id-badge text-blue-700 text-xs"></i>
             <span class="hidden sm:inline">บัตร E-Pass ของฉัน</span>
             <span class="sm:hidden">บัตรของฉัน</span>
           </button>
 
-          <!-- ปุ่มระบบสแกน QR Code ของ Admin หน้างาน -->
           <button id="openAdminPortalBtn" type="button" class="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-full text-xs font-semibold bg-slate-900 text-amber-300 hover:bg-slate-800 transition-all shadow-sm">
             <i class="fa-solid fa-qrcode text-amber-400 text-xs"></i>
             <span>Admin สแกน</span>
@@ -174,7 +171,7 @@
     <div id="mobileMenu" class="lg:hidden hidden bg-white border-b border-slate-200 px-6 py-5 space-y-3 shadow-xl">
       <a href="#about" class="block text-base font-medium text-slate-700 mobile-nav-link">เกี่ยวกับหลักสูตร</a>
       <a href="#modules" class="block text-base font-medium text-slate-700 mobile-nav-link">เนื้อหาอบรม (4 โมดูล)</a>
-      <a href="#schedule" class="block text-base font-medium text-slate-700 mobile-nav-link">กำหนดการอบรม</a>
+      <a href="#schedule" class="block text-base font-medium text-slate-700 mobile-nav-link">กำหนดการอบรม (2 วัน)</a>
       <a href="#applicants" class="block text-base font-medium text-slate-700 mobile-nav-link">ตรวจสอบรายชื่อผู้สมัคร</a>
       <div class="pt-2 flex flex-col gap-2">
         <button id="mobileOpenUserBtn" class="w-full py-2.5 bg-blue-50 text-blue-900 rounded-xl font-semibold text-xs border border-blue-200 flex items-center justify-center gap-2">
@@ -201,7 +198,7 @@
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-16 sm:pt-28 pb-8 flex flex-col items-center text-center">
       <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10.5px] sm:text-xs font-medium mb-6 shadow-sm whitespace-nowrap">
         <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400 animate-pulse shrink-0"></span>
-        <span>หลักสูตรระยะสั้นพัฒนาวิชาชีพครูยุคดิจิทัล • รหัสหลักสูตร 1056799</span>
+        <span>หลักสูตรระยะสั้นพัฒนาวิชาชีพครูยุคดิจิทัล • สาขาวิชาคณิตศาสตร์ รหัสหลักสูตร 1056799</span>
       </div>
 
       <div class="space-y-1">
@@ -214,12 +211,12 @@
       </div>
 
       <p class="mt-5 text-sm sm:text-lg text-slate-200 max-w-2xl font-light font-body leading-relaxed drop-shadow">
-        เปลี่ยนภาระงานเอกสารซ้ำซ้อนสู่ <strong class="text-white font-medium">Web Application</strong> ประจำห้องเรียนด้วย Google Sheets & GitHub ร่วมกับ AI Prompts <span class="text-amber-300 font-medium">โดยไม่ต้องมีพื้นฐานโค้ดมาก่อน</span>
+        เปลี่ยนภาระงานเอกสารสู่ <strong class="text-white font-medium">Web Application</strong> ประจำห้องเรียนด้วย Google Sheets & GitHub ร่วมกับ AI Prompts <span class="text-amber-300 font-medium">โดยไม่ต้องมีพื้นฐานโค้ดมาก่อน</span>
       </p>
 
       <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
         <a href="#register" class="px-7 py-3 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs sm:text-sm transition-all duration-300 shadow-glow-gold flex items-center gap-2">
-          <span>ลงทะเบียนเข้าร่วมอบรม</span>
+          <span>ลงทะเบียนเข้าร่วมอบรม ฟรี</span>
           <i class="fa-solid fa-arrow-right text-xs"></i>
         </a>
         <button onclick="triggerUserLoginModal()" class="px-6 py-3 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/25 text-white font-medium text-xs sm:text-sm transition-all flex items-center gap-2">
@@ -253,8 +250,8 @@
           <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white mb-3 group-hover:bg-amber-400 group-hover:text-slate-950 transition-colors">
             <i class="fa-solid fa-calendar-days text-base"></i>
           </div>
-          <div class="text-xs sm:text-sm font-bold text-white group-hover:text-amber-400 transition-colors">ตารางการอบรม</div>
-          <div class="text-[11px] text-slate-300 mt-0.5">12 ชม. รวม 2 วัน</div>
+          <div class="text-xs sm:text-sm font-bold text-white group-hover:text-amber-400 transition-colors">กำหนดการอบรม</div>
+          <div class="text-[11px] text-slate-300 mt-0.5">12 ชม. (09.00 - 16.00 น.)</div>
         </a>
 
         <a href="#applicants" class="frosted-glass hover:bg-slate-900/90 border border-white/15 p-4 sm:p-5 rounded-2xl sm:rounded-3xl card-transition hover:-translate-y-1 group">
@@ -281,7 +278,7 @@
           12 ชั่วโมง สู่ห้องเรียนอัจฉริยะ
         </h2>
         <p class="mt-4 text-slate-600 text-base sm:text-xl font-light font-body leading-relaxed">
-          ผู้นำการประยุกต์ใช้ปัญญาประดิษฐ์ (Generative AI) เพื่อพัฒนาคุณภาพการจัดการศึกษา และลดภาระงานครูอย่างยั่งยืน
+          สาขาวิชาคณิตศาสตร์ มหาวิทยาลัยมหาสารคาม มุ่งส่งเสริมการประยุกต์ใช้ปัญญาประดิษฐ์ (Generative AI) เพื่อพัฒนาคุณภาพการจัดการศึกษา และลดภาระงานครูอย่างยั่งยืน
         </p>
       </div>
 
@@ -336,7 +333,7 @@
 
             <h3 class="text-2xl font-bold mt-6 leading-snug">
               วุฒิบัตรรับรองจาก <br>
-              มหาวิทยาลัยมหาสารคาม
+              สาขาวิชาคณิตศาสตร์ มมส.
             </h3>
 
             <p class="mt-4 text-pink-100/90 text-xs sm:text-sm font-body leading-relaxed">
@@ -437,7 +434,7 @@
     </div>
   </section>
 
-  <!-- ================= 5. TIMETABLE SCHEDULE SECTION ================= -->
+  <!-- ================= 5. TIMETABLE SCHEDULE SECTION (อัปเดตตามกำหนดการจริง 12 ชม.) ================= -->
   <section id="schedule" class="py-20 sm:py-28 bg-white border-b border-slate-200">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-10">
@@ -445,44 +442,84 @@
           <i class="fa-solid fa-clock text-amber-500"></i> TIMETABLE & ROADMAP
         </span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          กำหนดการฝึกอบรม 2 วัน
+          กำหนดการฝึกอบรม 2 วัน (12 ชั่วโมง)
         </h2>
-        <p class="text-slate-500 text-sm sm:text-base mt-2">หลักสูตรเข้มข้น 12 ชั่วโมง เวลา 09.00 - 16.30 น.</p>
+        <p class="text-slate-500 text-sm sm:text-base mt-2">
+          บรรยาย 3 ชั่วโมง และปฏิบัติการ 9 ชั่วโมง (เวลา 09.00 - 16.00 น.) ณ คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม
+        </p>
 
         <div class="mt-8 inline-flex p-1.5 bg-slate-100 rounded-2xl border border-slate-200">
           <button id="tabDay1Btn" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-950 shadow-sm flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-blue-600"></span> วันที่ 1 : สถาปัตยกรรม & AI Scripting
           </button>
           <button id="tabDay2Btn" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-slate-600 hover:text-slate-950 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-slate-300"></span> วันที่ 2 : GitHub Pages & PDPA
+            <span class="w-2 h-2 rounded-full bg-slate-300"></span> วันที่ 2 : GitHub Pages, PDPA & นำเสนอผลงาน
           </button>
         </div>
       </div>
 
+      <!-- กำหนดการวันที่ 1 -->
       <div id="scheduleDay1" class="relative pl-6 sm:pl-8 border-l-2 border-slate-200 space-y-6 ml-3 sm:ml-4">
-        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200">
-          <span class="px-2.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-mono font-bold">09.00 - 12.00 น.</span>
-          <h4 class="text-base font-bold text-slate-900 mt-2">ภาพรวมสถาปัตยกรรม Google Sheets + AI Apps Script</h4>
-          <p class="text-xs text-slate-600 mt-1">ออกแบบฐานข้อมูลและใช้ AI ช่วยสร้างชุดคำสั่ง API</p>
+        
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 relative group hover:border-slate-300 transition-all">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="px-2.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-mono font-bold">09.00 - 10.30 น.</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-medium">บรรยาย + สาธิต</span>
+          </div>
+          <h4 class="text-base font-bold text-slate-900 mt-2.5">นำเสนอระบบจัดการห้องเรียน Sheets + AI + Web App และการออกแบบชั้นเรียน</h4>
+          <p class="text-xs text-slate-600 mt-1 leading-relaxed">ภาพรวมการเชื่อมต่อระบบฐานข้อมูล Google Sheets, Google Apps Script และ Web App เพื่อออกแบบระบบงานในห้องเรียน</p>
         </div>
-        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200">
-          <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-mono font-bold">13.00 - 16.30 น.</span>
-          <h4 class="text-base font-bold text-slate-900 mt-2">Lab: เชื่อมต่อ API ทดสอบรับส่งข้อมูลจริง</h4>
-          <p class="text-xs text-slate-600 mt-1">ทดสอบยิง Request และตั้งค่าความปลอดภัยระบบ</p>
+
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 relative group hover:border-slate-300 transition-all">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-mono font-bold">10.30 - 12.00 น.</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-amber-200/70 text-amber-900 text-[11px] font-medium">Workshop ทำเดี่ยว</span>
+          </div>
+          <h4 class="text-base font-bold text-slate-900 mt-2.5">AI Prompting สำหรับครู สั่งการ AI ให้เขียน Google Apps Script</h4>
+          <p class="text-xs text-slate-600 mt-1 leading-relaxed">ฝึกเขียนคำสั่ง Prompt สั่งการ AI สร้างฟังก์ชันบันทึกเวลาเรียนและคำนวณคะแนนอัตโนมัติ</p>
         </div>
+
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 relative group hover:border-slate-300 transition-all">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-mono font-bold">13.00 - 16.00 น.</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-emerald-200/70 text-emerald-900 text-[11px] font-medium">Workshop ปฏิบัติการ</span>
+          </div>
+          <h4 class="text-base font-bold text-slate-900 mt-2.5">ทดสอบ ดีบัก และเชื่อมต่อ GitHub ผ่าน Google Apps Script</h4>
+          <p class="text-xs text-slate-600 mt-1 leading-relaxed">ปฏิบัติการตรวจสอบข้อผิดพลาด (Debug) การเชื่อมต่อ API รับส่งข้อมูล และทดสอบความเสถียรของระบบ</p>
+        </div>
+
       </div>
 
+      <!-- กำหนดการวันที่ 2 -->
       <div id="scheduleDay2" class="relative pl-6 sm:pl-8 border-l-2 border-slate-200 space-y-6 ml-3 sm:ml-4 hidden">
-        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200">
-          <span class="px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-mono font-bold">09.00 - 12.00 น.</span>
-          <h4 class="text-base font-bold text-slate-900 mt-2">Frontend Responsive บน GitHub Pages</h4>
-          <p class="text-xs text-slate-600 mt-1">สร้างหน้าจอใช้งานบนมือถือ และโฮสต์ออนไลน์ฟรี</p>
+        
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 relative group hover:border-slate-300 transition-all">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-mono font-bold">09.00 - 12.00 น.</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-indigo-200/70 text-indigo-900 text-[11px] font-medium">Workshop ปฏิบัติการ</span>
+          </div>
+          <h4 class="text-base font-bold text-slate-900 mt-2.5">การสร้างหน้าเว็บ ด้วย HTML ผ่าน GitHub เพื่อให้นักเรียนเช็คชื่อและดูผลงาน</h4>
+          <p class="text-xs text-slate-600 mt-1 leading-relaxed">สร้างหน้าเว็บแบบ Responsive สำหรับมือถือ และเปิดโฮสต์บน GitHub Pages เพื่อให้นักเรียนเข้าถึงได้จริง</p>
         </div>
-        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200">
-          <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-mono font-bold">13.00 - 16.30 น.</span>
-          <h4 class="text-base font-bold text-slate-900 mt-2">PDPA & มอบวุฒิบัตรรับรอง 12 ชม.</h4>
-          <p class="text-xs text-slate-600 mt-1">นำเสนอผลงาน และรับมอบวุฒิบัตรจากมหาวิทยาลัย</p>
+
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 relative group hover:border-slate-300 transition-all">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 text-xs font-mono font-bold">13.00 - 15.00 น.</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-rose-200/70 text-rose-900 text-[11px] font-medium">อภิปรายกลุ่ม</span>
+          </div>
+          <h4 class="text-base font-bold text-slate-900 mt-2.5">ความปลอดภัยข้อมูลนักเรียน PDPA และการนำไปประยุกต์ใช้จริงในโรงเรียน</h4>
+          <p class="text-xs text-slate-600 mt-1 leading-relaxed">หลักเกณฑ์การคุ้มครองข้อมูลส่วนบุคคลของนักเรียน จริยธรรม AI และแนวทางการประยุกต์ใช้ในบริบทห้องเรียนจริง</p>
         </div>
+
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 relative group hover:border-slate-300 transition-all">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="px-2.5 py-1 rounded-full bg-teal-100 text-teal-800 text-xs font-mono font-bold">15.00 - 16.00 น.</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-teal-200/70 text-teal-900 text-[11px] font-medium">นำเสนอชิ้นงาน</span>
+          </div>
+          <h4 class="text-base font-bold text-slate-900 mt-2.5">การนำเสนอผลงาน และการประเมินผล</h4>
+          <p class="text-xs text-slate-600 mt-1 leading-relaxed">นำเสนอ Web Application ประจำห้องเรียน ประเมินผลงานตามเกณฑ์ และรับมอบวุฒิบัตรรับรอง 12 ชั่วโมง</p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -496,7 +533,7 @@
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">
           ลงทะเบียนเข้าร่วมการอบรม
         </h2>
-        <p class="text-slate-600 text-sm mt-1">บันทึกข้อมูลเข้า Google Sheets แบบ Real-time และรับบัตร E-Pass ประจำตัวทันที</p>
+        <p class="text-slate-600 text-sm mt-1">จัดโดย สาขาวิชาคณิตศาสตร์ มหาวิทยาลัยมหาสารคาม (ฟรีตลอดหลักสูตร)</p>
       </div>
 
       <div class="bg-white rounded-[32px] p-6 sm:p-10 border border-slate-200 shadow-card-hover">
@@ -565,7 +602,7 @@
     </div>
   </section>
 
-  <!-- ================= 7. DIRECTORY TABLE SECTION (รายชื่อสาธารณะ - ซ่อน QR & บัตร) ================= -->
+  <!-- ================= 7. DIRECTORY TABLE SECTION ================= -->
   <section id="applicants" class="py-20 sm:py-28 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -590,7 +627,6 @@
         </div>
       </div>
 
-      <!-- Table Wrapper (ไม่มีคอลัมน์กดดูบัตรของคนอื่น) -->
       <div class="bg-white rounded-[28px] border border-slate-200 overflow-hidden shadow-card-soft">
         <div class="overflow-x-auto">
           <table class="w-full text-left text-sm font-body">
@@ -635,14 +671,14 @@
   <!-- ================= 8. FOOTER ================= -->
   <footer class="bg-slate-950 text-white py-12 border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-400 space-y-2">
-      <div class="font-bold text-white text-base">ระบบจัดการชั้นเรียนดิจิทัลด้วย AI | มหาวิทยาลัยมหาสารคาม</div>
-      <div>คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม ต.ตลาด อ.เมือง จ.มหาสารคาม 44150</div>
-      <div class="pt-2 text-slate-500 font-mono">© 2026 Mahasarakham University. Privacy Protected & PDPA Compliant.</div>
+      <div class="font-bold text-white text-base">ระบบจัดการชั้นเรียนดิจิทัลด้วย AI | สาขาวิชาคณิตศาสตร์ มหาวิทยาลัยมหาสารคาม</div>
+      <div>สาขาวิชาคณิตศาสตร์ คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม ต.ตลาด อ.เมือง จ.มหาสารคาม 44150</div>
+      <div class="pt-2 text-slate-500 font-mono">© 2026 Mathematics Education, Mahasarakham University. Privacy Protected & PDPA Compliant.</div>
     </div>
   </footer>
 
-  <!-- ================= 9. MODAL: OFFICIAL E-PASS (แสดงเฉพาะเจ้าของบัตร) ================= -->
-  <div id="ticketModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto hidden">
+  <!-- ================= 9. MODAL: OFFICIAL E-PASS (ตั้งค่า z-[60] เพื่อลอยอยู่หน้าสุดเสมอ) ================= -->
+  <div id="ticketModal" class="fixed inset-0 z-[60] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto hidden">
     <div class="relative w-full max-w-lg my-auto transform transition-all">
       
       <button id="closeTicketModal" type="button" class="absolute -top-12 right-0 sm:-right-4 w-10 h-10 rounded-full bg-white/20 hover:bg-white text-white hover:text-slate-950 flex items-center justify-center transition-all z-10 shadow-lg no-print">
@@ -662,7 +698,7 @@
                 class="w-10 h-10 rounded-xl bg-white p-0.5 object-contain shadow-sm shrink-0"
               />
               <div>
-                <div class="text-[10px] font-mono tracking-widest text-amber-300 font-bold uppercase">MAHASARAKHAM UNIVERSITY</div>
+                <div class="text-[10px] font-mono tracking-widest text-amber-300 font-bold uppercase">สาขาวิชาคณิตศาสตร์ มมส.</div>
                 <div class="text-sm sm:text-base font-bold leading-tight">บัตรประจำตัวผู้เข้ารับการอบรม (E-Pass)</div>
               </div>
             </div>
@@ -708,8 +744,8 @@
               <div class="text-slate-400 font-mono text-[10px] uppercase font-bold flex items-center gap-1.5 mb-1">
                 <i class="fa-regular fa-calendar-days text-amber-500"></i> วันที่จัดอบรม
               </div>
-              <div class="font-bold text-slate-900">24 - 25 ต.ค. 2569</div>
-              <div class="text-[11px] text-slate-500 font-mono">09.00 - 16.30 น. (12 ชม.)</div>
+              <div class="font-bold text-slate-900">2 วัน (รวม 12 ชม.)</div>
+              <div class="text-[11px] text-slate-500 font-mono">09.00 - 16.00 น.</div>
             </div>
 
             <div class="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-sm">
@@ -774,11 +810,10 @@
     </div>
   </div>
 
-  <!-- ================= 10. MODAL: USER PORTAL (LOGIN & PRIVATE E-PASS) ================= -->
+  <!-- ================= 10. MODAL: USER PORTAL ================= -->
   <div id="userModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto hidden">
     <div class="relative w-full max-w-lg bg-white rounded-[32px] overflow-hidden shadow-2xl border border-slate-200 my-auto">
       
-      <!-- User Modal Header -->
       <div class="bg-gradient-to-r from-blue-900 via-brand-navy to-slate-900 text-white p-6 flex justify-between items-center">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-amber-300">
@@ -818,7 +853,7 @@
         </form>
       </div>
 
-      <!-- State 2: User Profile Dashboard (Edit & View Pass) -->
+      <!-- State 2: User Profile Dashboard -->
       <div id="userDashboardBox" class="p-6 sm:p-8 space-y-5 hidden">
         <div class="flex items-center justify-between pb-3 border-b border-slate-200">
           <div>
@@ -830,7 +865,7 @@
           </span>
         </div>
 
-        <!-- กล่องทางลัดเปิดดู QR Code ประจำตัว -->
+        <!-- กล่องทางลัดเปิดดู QR Code -->
         <div class="p-4 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 flex items-center justify-between">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center font-bold">
@@ -902,7 +937,6 @@
   <div id="adminModal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto hidden">
     <div class="relative w-full max-w-2xl bg-white rounded-[32px] overflow-hidden shadow-2xl border border-slate-200 my-auto">
       
-      <!-- Admin Header -->
       <div class="bg-slate-950 text-white p-5 sm:p-6 flex justify-between items-center border-b border-slate-800">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center font-bold">
@@ -925,7 +959,7 @@
         </div>
         <div>
           <h3 class="text-lg font-bold text-slate-900">เข้าสู่ระบบเจ้าหน้าที่ (Admin)</h3>
-          <p class="text-xs text-slate-500 mt-1">กรุณากรอกรหัส PIN </p>
+          <p class="text-xs text-slate-500 mt-1">กรุณากรอกรหัส PIN (ค่าเริ่มต้น: 2569)</p>
         </div>
         <form id="adminPinForm" class="max-w-xs mx-auto space-y-3">
           <input type="password" id="adminPinInput" placeholder="กรอกรหัส PIN" maxlength="10" required class="w-full text-center tracking-widest text-lg font-mono px-4 py-3 rounded-2xl border border-slate-300 focus:border-slate-900 outline-none" />
@@ -938,7 +972,6 @@
       <!-- Admin State 2: Main Scanner & Stats Dashboard -->
       <div id="adminMainBox" class="p-5 sm:p-6 space-y-5 hidden">
         
-        <!-- Live Status Bar -->
         <div class="grid grid-cols-3 gap-2 sm:gap-3 text-center">
           <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200">
             <div class="text-[10px] font-mono text-slate-500 uppercase">ยอดผู้สมัคร</div>
@@ -970,7 +1003,6 @@
             </div>
           </div>
 
-          <!-- กล่องส่องกล้องผ่านไลบรารี HTML5 QR Code -->
           <div id="qr-reader" class="w-full max-w-sm mx-auto overflow-hidden rounded-xl border border-white/20 bg-slate-950"></div>
           <p class="text-[11px] text-slate-400 mt-2 font-mono">ส่องกล้องไปที่ QR Code บนบัตร E-Pass ของผู้เข้าอบรม</p>
         </div>
@@ -1011,8 +1043,8 @@
 
   <!-- ================= 12. JAVASCRIPT LOGIC ================= -->
   <script>
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyxuZpiAlLgEMpMt4oxrwOe_bDx0rheZJUEvHSJgTixsmoXPpzreEhcxErFgRurW3t-uQ/exec";
-    const LOCAL_ADMIN_PIN = "admin";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzXEw_THiObeOPGYslR673qtq-xpdvXjz4Y6-Op-LjIlEkvpnFG_1LiQei2oOPclmkg4w/exec";
+    const LOCAL_ADMIN_PIN = "2569"; // ตั้งค่ารหัสผ่าน PIN 2569 ให้ตรงกับ Apps Script
 
     const DEMO_FALLBACK_DATA = [
       { id: "MSU-AI-2026-0001", name: "ครูวิภาดา สุขสมบูรณ์", role: "ครูผู้สอนระดับการศึกษาขั้นพื้นฐาน", school: "โรงเรียนสาธิต มมส.", phone: "0814567890", email: "wiphada@gmail.com", date: "10 ต.ค. 2569", checkInStatus: "ยังไม่มา", checkInTime: "-" },
@@ -1058,7 +1090,7 @@
       setTimeout(() => toast.classList.remove('translate-y-3', 'opacity-0'), 20);
       setTimeout(() => {
         toast.classList.add('opacity-0', 'translate-y-2');
-        setTimeout(() => toast.remove(), 300);
+        setTimeout(() => toast.remove(), 3500);
       }, 3500);
     }
 
@@ -1108,7 +1140,6 @@
       }
     }
 
-    // ฟังก์ชันเรนเดอร์ตารางสาธารณะ (ตัดปุ่มดู E-Pass ของคนอื่นออก 100%)
     function renderTable(filter = '') {
       const tbody = document.getElementById('applicantTableBody');
       const empty = document.getElementById('tableEmptyState');
@@ -1158,7 +1189,7 @@
       document.getElementById('showingCount').textContent = filtered.length;
     }
 
-    // ฟังก์ชันเปิดบัตร E-Pass เฉพาะบุคคล (จะถูกเรียกเมื่อเจ้าของกรอกรหัสผ่าน หรือสมัครสำเร็จใหม่ๆ)
+    // ฟังก์ชันเปิดแสดงบัตร E-Pass
     window.openPassModal = function(id) {
       const item = applicants.find(a => a.id === id);
       if (!item) return;
@@ -1183,7 +1214,6 @@
         statusBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span> CONFIRMED`;
       }
 
-      // สร้าง Dynamic QR Code จากรหัสประจำตัวผู้เข้าอบรม (ID เฉพาะบุคคล)
       const qrPayload = item.id;
       const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=0&color=0B192C&data=${encodeURIComponent(qrPayload)}`;
       document.getElementById('ticketQrCode').src = qrUrl;
@@ -1191,9 +1221,7 @@
       document.getElementById('ticketModal').classList.remove('hidden');
     };
 
-    // -----------------------------------------------------------------
-    // ระบบลงทะเบียนใหม่ (Registration)
-    // -----------------------------------------------------------------
+    // Registration Form Submit
     document.getElementById('registrationForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       const btn = document.getElementById('submitRegBtn');
@@ -1223,7 +1251,6 @@
           applicants.unshift(result.applicant);
           renderTable();
           updateSeatWidgets(result.registeredCount || applicants.length);
-          // แสดงบัตรเฉพาะผู้ที่พึ่งสมัครเสร็จ
           openPassModal(result.applicant.id);
           this.reset();
         } else {
@@ -1244,9 +1271,7 @@
       }
     });
 
-    // -----------------------------------------------------------------
-    // ระบบผู้ใช้ (User Self-Service: Login ด้วยเบอร์โทร + อีเมล เพื่อดูบัตรตนเอง)
-    // -----------------------------------------------------------------
+    // User Portal Actions
     window.triggerUserLoginModal = function() {
       document.getElementById('userModal').classList.remove('hidden');
       if (loggedInUser) {
@@ -1267,7 +1292,6 @@
       document.getElementById('userModal').classList.add('hidden');
     });
 
-    // ส่งฟอร์มเข้าสู่ระบบผู้ใช้
     document.getElementById('userLoginForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       const phoneInput = document.getElementById('userLoginPhone').value.trim();
@@ -1290,7 +1314,6 @@
           showUserDashboard(loggedInUser);
           showToast(`ยินดีต้อนรับคุณ ${loggedInUser.name}`);
         } else {
-          // ตรวจสอบจาก Local fallback
           const cleanP = phoneInput.replace(/[^0-9]/g, '');
           const found = applicants.find(a => a.phone.replace(/[^0-9]/g, '') === cleanP && a.email.toLowerCase() === emailInput);
           if (found) {
@@ -1330,7 +1353,14 @@
       }
     }
 
-    // บันทึกการแก้ไขข้อมูลผู้ใช้
+    // แก้ไข: ปิดหน้า userModal และเด้งบัตร E-Pass ทันทีที่กดปุ่ม
+    document.getElementById('viewMyPassBtn').addEventListener('click', () => {
+      if (loggedInUser) {
+        document.getElementById('userModal').classList.add('hidden');
+        openPassModal(loggedInUser.id);
+      }
+    });
+
     document.getElementById('userEditProfileForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       if (!loggedInUser) return;
@@ -1379,10 +1409,6 @@
       }
     });
 
-    document.getElementById('viewMyPassBtn').addEventListener('click', () => {
-      if (loggedInUser) openPassModal(loggedInUser.id);
-    });
-
     document.getElementById('userLogoutBtn').addEventListener('click', () => {
       loggedInUser = null;
       document.getElementById('userLoginForm').reset();
@@ -1391,9 +1417,7 @@
       showToast('ออกจากระบบเรียบร้อย');
     });
 
-    // -----------------------------------------------------------------
-    // ระบบผู้ดูแลระบบ (Admin Dashboard & Camera QR Scanner)
-    // -----------------------------------------------------------------
+    // Admin Portal Actions
     document.getElementById('openAdminPortalBtn').addEventListener('click', () => {
       document.getElementById('adminModal').classList.remove('hidden');
     });
@@ -1407,7 +1431,6 @@
       document.getElementById('adminModal').classList.add('hidden');
     });
 
-    // ตรวจสอบ PIN Admin
     document.getElementById('adminPinForm').addEventListener('submit', (e) => {
       e.preventDefault();
       const pin = document.getElementById('adminPinInput').value.trim();
@@ -1417,7 +1440,7 @@
         renderAdminAttendeeList();
         showToast('เข้าสู่ระบบผู้ดูแลเรียบร้อย');
       } else {
-        showToast('รหัส PIN ไม่ถูกต้อง (ลอง 2569)', 'error');
+        showToast('รหัส PIN ไม่ถูกต้อง', 'error');
       }
     });
 
@@ -1579,9 +1602,7 @@
       renderAdminAttendeeList(e.target.value);
     });
 
-    // -----------------------------------------------------------------
-    // UI Event Listeners ทั่วไป
-    // -----------------------------------------------------------------
+    // General UI Event Listeners
     document.getElementById('applicantSearchInput').addEventListener('input', (e) => renderTable(e.target.value));
     document.getElementById('refreshDataBtn').addEventListener('click', () => {
       fetchApplicants();
@@ -1619,7 +1640,6 @@
       link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
     });
 
-    // Init
     window.addEventListener('DOMContentLoaded', () => {
       updateSeatWidgets(applicants.length);
       renderTable();
