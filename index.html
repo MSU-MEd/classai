@@ -24,8 +24,8 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Prompt', 'sans-serif'],
-            body: ['Sarabun', 'sans-serif'],
+            sans: ['Mornamchi', 'sans-serif'],
+            body: ['Mornamchi', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
@@ -50,15 +50,37 @@
   </script>
 
   <style>
+    @font-face {
+      font-family: 'Mornamchi';
+      src: url('./Mornamchi-Light.woff2') format('woff2');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Mornamchi';
+      src: url('./Mornamchi-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Mornamchi';
+      src: url('./Mornamchi-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
     body {
-      font-family: 'Sarabun', sans-serif;
+      font-family: 'Mornamchi', sans-serif;
       color: #0f172a;
       background-color: #fafbfc;
       -webkit-font-smoothing: antialiased;
     }
     h1, h2, h3, h4, h5, h6, .font-heading {
-      font-family: 'Prompt', sans-serif;
-      letter-spacing: -0.02em;
+      font-family: 'Mornamchi', sans-serif;
+      letter-spacing: normal;
     }
     .frosted-glass {
       background: rgba(11, 25, 44, 0.72);
